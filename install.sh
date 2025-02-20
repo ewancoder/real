@@ -112,6 +112,8 @@ user_packages=(
     tmux                # Terminal multiplexer.
     xournalpp           # Handwritten brainstorming journal. (TODO: alternatively try Lorien: aur lorien-bin package)
     ncdu                # NCurses version of du, to see how much space is taken.
+    net-tools           # For ifconfig for script that shows status of downloads/uploads.
+    jellyfin-mpv-shim   # For integrating mpv with jellyfin.
 
     # Git for development: duplicated here in case we decide we don't need YAY.
     # github-cli is needed for auth credential manager to be able to authenticate (without ssh).

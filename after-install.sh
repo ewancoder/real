@@ -95,3 +95,6 @@ reload sway now that wallpapers should be downloaded (or reload multiple times l
 # Cache DATA stuff to a separate /mnt/data volume (maybe not the Games YET, because space is limited)
 # - anki cards
 # - Dropbox
+
+# !! configure /etc/systemd/resolved.conf if needed:
+# DNS=8.8.8.8 8.8.4.4 (probably better to do this on router level)
