@@ -73,3 +73,23 @@ mount /dev/sda1 /mnt/boot
 
 # Then in project
 # npm i && ng serve
+
+# My FS info:
+
+# /
+/dev/nvme1n1p4 + 5
+
+# /boot
+/dev/nvme1n1p3
+
+# /mnt/backup
+/dev/nvme2n1p5
+
+# /mnt/data
+/dev/nvme1n1p6 + 7 + 8
+
+# (windows EFI)
+/dev/nvme2n1p1
+
+# (TESTING SCRIPT PARTITION - reinstalling system without the grub)
+/dev/nvme1n1p9 (40 GB)
