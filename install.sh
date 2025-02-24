@@ -146,6 +146,14 @@ sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Syy
 pacman -S ${special_packages[@]} ${essential_packages[@]} ${user_packages[@]} --noconfirm
 
+# Fix failing rutracker dns
+echo "104.21.32.39 rutracker.org" > /etc/hosts
+
+# Restore symlinks to mnt
+ln -fs /mnt/data/home/ssh ~/.ssh
+ln -fs /mnt/data/home/projects ~/projects
+ln -fs /mnt/data/home/work ~/work
+
 # Enable backups.
 systemctl enable cronie
 echo "0 */4 * * * /home/ewancoder/.local/bin/backup.sh" | crontab -
