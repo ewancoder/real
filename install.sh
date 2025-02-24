@@ -80,6 +80,7 @@ essential_packages=(
 
     qt5-wayland qt6-wayland # Wayland support for QT apps.
     xorg-xwayland           # Support for X apps under Wayland.
+    cronie rsync            # For backups.
 )
 
 # Additional user software.
@@ -144,6 +145,10 @@ echo $user_password | passwd $user_name --stdin
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Syy
 pacman -S ${special_packages[@]} ${essential_packages[@]} ${user_packages[@]} --noconfirm
+
+# Enable backups.
+systemctl enable cronie
+echo "0 */4 * * * /home/ewancoder/.local/bin/backup.sh" | crontab -
 
 systemctl enable docker
 systemctl enable bluetooth
