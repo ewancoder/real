@@ -150,9 +150,9 @@ pacman -S ${special_packages[@]} ${essential_packages[@]} ${user_packages[@]} --
 echo "104.21.32.39 rutracker.org" > /etc/hosts
 
 # Restore symlinks to mnt
-ln -fs /mnt/data/home/ssh ~/.ssh
-ln -fs /mnt/data/home/projects ~/projects
-ln -fs /mnt/data/home/work ~/work
+ln -fs /mnt/data/home/ssh /home/$user_name/.ssh
+ln -fs /mnt/data/home/projects /home/$user_name/projects
+ln -fs /mnt/data/home/work /home/$user_name/work
 
 # Enable backups.
 systemctl enable cronie
@@ -221,7 +221,6 @@ if [[ $dotfiles_repo ]]; then
     sed -i "s/Ivan Zyranau/$git_user_name/" .gitconfig
     sed -i "s/ewancoder@gmail.com/$git_email/" .gitconfig
 
-    mkdir work
     chown -R $user_name:$user_name .
 fi
 

@@ -18,6 +18,10 @@ btrfs balance start /
 
 
 
+# [alternative install from another repo - streamlined]
+git clone --depth=1 https://github.com/wick3dr0se/archstrap
+cd archstrap
+sudo archstrap /mnt/archstrap
 
 # Installation from another repo:
 # - install squashfs-tools btrfs-progs
