@@ -119,6 +119,9 @@ user_packages=(
     # Git for development: duplicated here in case we decide we don't need YAY.
     # github-cli is needed for auth credential manager to be able to authenticate (without ssh).
     git github-cli
+
+    # Android phone mounting.
+    android-file-transfer   # Usage: aft-mtp-mount ~/mnt
 )
 yay_user_packages=(
     google-chrome       # Main browser.
