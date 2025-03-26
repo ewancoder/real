@@ -5,6 +5,8 @@
 # These steps need to be done after rebooting into your installed system.
 
 ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+iws
+pacman -S nvidia-open steam lib32-nvidia-utils
 
 # Check driver is nvidia
 lspci -k -d ::03xx

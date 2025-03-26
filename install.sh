@@ -46,7 +46,7 @@ special_packages=(
 
     # Docker. Script enables it later so we need it here not to break it.
     # If you do not need docker - remove it from here and from below.
-    docker
+    docker docker-compose
 
     playerctl   # In order to be able to control players with multimedia keys, systemwide.
 
@@ -144,6 +144,10 @@ useradd -m $user_name
 echo $user_password | passwd $user_name --stdin
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Syy
+
+# Remove this files if it exists (otherwise re-installation fails)
+rm -f /boot/intel-ucode.img
+
 pacman -S ${special_packages[@]} ${essential_packages[@]} ${user_packages[@]} --noconfirm
 
 # Fix failing rutracker dns
@@ -153,6 +157,7 @@ echo "104.21.32.39 rutracker.org" > /etc/hosts
 ln -fs /mnt/data/home/ssh /home/$user_name/.ssh
 ln -fs /mnt/data/home/projects /home/$user_name/projects
 ln -fs /mnt/data/home/work /home/$user_name/work
+ln -fs /mnt/data/Dropbox /home/Dropbox
 
 # Enable backups.
 systemctl enable cronie
@@ -214,10 +219,11 @@ if [[ $dotfiles_repo ]]; then
     echo "export RDP_PASSWORD=$rdp_password" >> .secrets
 
     # Additional post-processing.
-    if [[ ! "${special_packages[@]}" =~ "nvidia" ]]; then
-        echo "Removing --unsupported-gpu from Sway startup, because we are not using Nvidia."
-        sed -i "s/--unsupported-gpu//" .zprofile
-    fi
+    # For now always add it, I'm installing nvidia drivers later.
+    #if [[ ! "${special_packages[@]}" =~ "nvidia" ]]; then
+    #    echo "Removing --unsupported-gpu from Sway startup, because we are not using Nvidia."
+    #    sed -i "s/--unsupported-gpu//" .zprofile
+    #fi
     sed -i "s/Ivan Zyranau/$git_user_name/" .gitconfig
     sed -i "s/ewancoder@gmail.com/$git_email/" .gitconfig
 
@@ -240,6 +246,9 @@ ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin $user_name %I 
 echo "zram" > /etc/modules-load.d/zram.conf
 echo 'ACTION=="add", KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="20G", RUN="/usr/bin/mkswap -U clear %N", TAG+="systemd"' > /etc/udev/rules.d/99-zram.rules
 echo '/dev/zram0 none swap defaults,discard,pri=100 0 0' >> /etc/fstab
+
+# Install angular globally
+npm i -g @angular/cli
 
 pacman -R --noconfirm go
 pacman -Qdtq | pacman -Rns -
