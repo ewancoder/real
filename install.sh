@@ -129,6 +129,7 @@ yay_user_packages=(
     slack-desktop       # Slack.
     sptlrx-bin          # Real-time lyrics for Spotify.
     anki                # Anki cards app.
+    zen-browser-bin     # Trying the new zen browser.
 )
 
 # TODO: Run the following inside chroot
