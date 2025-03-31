@@ -67,10 +67,12 @@ essential_packages=(
     # - slurp is used to select part of the screen and output to stdout (and to select a monitor to screen share).
     # - grim is used to screenshot the selected part (or whole monitor) and output to file (or pipe).
     # - wl-clipboard is used to manage clipboard in Wayland (and pipe grim output to it).
-    slurp grim wl-clipboard
+    # - swappy is used to edit screenshots inline
+    slurp grim wl-clipboard swappy
 
     # Fonts (TODO: figure out which ones I need).
-    noto-fonts ttf-liberation
+    # - otf-font-awesome is needed for swappy
+    noto-fonts ttf-liberation otf-font-awesome
 
     pavucontrol # GUI audio manager.
     sway        # Main WM.
