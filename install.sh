@@ -131,6 +131,7 @@ yay_user_packages=(
     zoom                # Messaging for work.
     uhk-agent-appimage  # UHK agent.
     skypeforlinux-bin   # Skype.
+    teams-for-linux-bin # Teams (instead of Skype).
     slack-desktop       # Slack.
     sptlrx-bin          # Real-time lyrics for Spotify.
     anki                # Anki cards app.
