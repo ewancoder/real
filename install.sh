@@ -125,6 +125,9 @@ user_packages=(
 
     # Android phone mounting.
     android-file-transfer   # Usage: aft-mtp-mount ~/mnt
+
+    # .NET development.
+    dotnet-sdk-8.0 dotnet-sdk aspnet-runtime-8.0 aspnet-runtime
 )
 yay_user_packages=(
     google-chrome       # Main browser.
@@ -137,6 +140,7 @@ yay_user_packages=(
     sptlrx-bin          # Real-time lyrics for Spotify.
     anki                # Anki cards app.
     zen-browser-bin     # Trying the new zen browser.
+    rider               # .NET development.
 )
 
 # TODO: Run the following inside chroot
