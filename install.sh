@@ -46,7 +46,8 @@ special_packages=(
 
     # Docker. Script enables it later so we need it here not to break it.
     # If you do not need docker - remove it from here and from below.
-    docker docker-compose
+    # buildx is needed for Rider docker debug
+    docker docker-compose docker-buildx
 
     playerctl   # In order to be able to control players with multimedia keys, systemwide.
 
