@@ -97,3 +97,6 @@ mount /dev/sda1 /mnt/boot
 
 # (TESTING SCRIPT PARTITION - reinstalling system without the grub)
 /dev/nvme1n1p9 (40 GB)
+
+# !!! /dev/sda1 -> /mnt/hdd
+
