@@ -100,3 +100,23 @@ reload sway now that wallpapers should be downloaded (or reload multiple times l
 
 # !! configure /etc/systemd/resolved.conf if needed:
 # DNS=8.8.8.8 8.8.4.4 (probably better to do this on router level)
+
+
+
+
+
+1. chrome needs to be configured for wayland, otherwise it uses xwayland
+2. rider: -Dawt.toolkit.name=WLToolkit
+
+to their VM options (Help | Edit Custom VM Options…).
+
+! todo: remap alt+shift+\ for AI autocomplete to some better combination
+ctrl+/ - opens prompt to initiate changing by AI
+
+can write docs: all actions -> write documentation. alternatively: settings -> tools -> ai assistent -> prompt library -> write docs
+-- hm this can be useful I guess
+
+also can generate unit tests - need to check this
+
+tesseract tesseract-data-eng
+imagemagick (installs magick command)
