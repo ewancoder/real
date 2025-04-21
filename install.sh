@@ -198,6 +198,9 @@ EnableNetworkConfiguration=true
 [Network]
 NameResolvingService=systemd""" > /etc/iwd/main.conf
 systemctl enable iwd systemd-resolved
+echo """[Service]
+ExecStart=
+ExecStart=/usr/lib/systemd/systemd-networkd-wait-online --interface=wlan0""" > /etc/systemd/system/systemd-networkd-wait-online.service.d/override.conf
 # Configure RDP ethernet to laptop
 echo """[Match]
 Name=eno2
