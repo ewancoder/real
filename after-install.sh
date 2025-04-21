@@ -120,3 +120,4 @@ also can generate unit tests - need to check this
 
 tesseract tesseract-data-eng
 imagemagick (installs magick command)
+- for jetbrains - wallaby
