@@ -141,6 +141,7 @@ yay_user_packages=(
     anki                # Anki cards app.
     zen-browser-bin     # Trying the new zen browser.
     rider               # .NET development.
+    nvidia-container-toolkit    # Needed for docker to be able to use NVENC (for Jellyfin).
 )
 
 # TODO: Run the following inside chroot
