@@ -92,7 +92,6 @@ user_packages=(
     gvim            # Text editor. GVIM package contains VIM with +clipboard support.
     less            # Tool for limiting terminal output.
     htop            # Tool for pretty resources analysis.
-    qbittorrent     # Torrent client.
     #steam           # Steam gaming client.
     code            # VS Code.
     discord         # Official Discord client.
