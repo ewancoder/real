@@ -121,3 +121,9 @@ also can generate unit tests - need to check this
 tesseract tesseract-data-eng
 imagemagick (installs magick command)
 - for jetbrains - wallaby
+
+
+
+
+!! TODO: add to install: tweat /etc/systemd/timesyncd.conf: NTP=time.google.com
+and timesyncd set-ntp true
