@@ -127,3 +127,13 @@ imagemagick (installs magick command)
 
 !! TODO: add to install: tweat /etc/systemd/timesyncd.conf: NTP=time.google.com
 and timesyncd set-ntp true
+
+!! install & start CADDY on a localc pc (for dev env)
+
+
+
+docker swarm init --advertise-addr <public ip address>
+- will be given a command to join a worker - run on sub-machines
+docker network create --driver overlay --attachable tyr-overlay
+
+attachable says regular containers (non swarm ones) can attach it
