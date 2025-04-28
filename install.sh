@@ -172,6 +172,10 @@ ln -fs /mnt/data/home/projects /home/$user_name/projects
 ln -fs /mnt/data/home/work /home/$user_name/work
 ln -fs /mnt/data/Dropbox /home/Dropbox
 
+# DEV env pet projects
+ln -fs /mnt/data/pet/dp.pfx /root/dp.pfx
+ln -fs /mnt/data/pet/* /data/
+
 # Enable backups.
 systemctl enable cronie
 echo "0 */4 * * * /home/ewancoder/.local/bin/backup.sh" | crontab -
