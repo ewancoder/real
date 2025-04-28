@@ -137,3 +137,25 @@ docker swarm init --advertise-addr <public ip address>
 docker network create --driver overlay --attachable tyr-overlay
 
 attachable says regular containers (non swarm ones) can attach it
+
+
+
+
+# install: yay vmware-workstation
+# todo: add this to install script
+start vmware-networks-configuration.service
+enable vmware-networks.service
+
+# probably install here linux-headers
+# and also yay vmware-host-modules
+# hm still doesn't work needs investigation
+
+modprobe -a vmw_vmci vmmon
+
+# Ensure direct RAM access (already done on image):
+Virtual_machine_name.vmx
+
+MemTrimRate = "0"
+sched.mem.pshare.enable = "FALSE"
+prefvmx.useRecommendedLockedMemSize = "TRUE"
+mainmem.backing = "swap"
