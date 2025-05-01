@@ -159,3 +159,11 @@ MemTrimRate = "0"
 sched.mem.pshare.enable = "FALSE"
 prefvmx.useRecommendedLockedMemSize = "TRUE"
 mainmem.backing = "swap"
+
+
+
+
+# for virtualbox:
+virtualbox virtualbox-host-modules-arch
+virtualbox-guest-iso - guest addition for running on VM
+reboot to load modules (lazy to load manually)
