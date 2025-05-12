@@ -74,7 +74,8 @@ essential_packages=(
 
     # Fonts (TODO: figure out which ones I need).
     # - otf-font-awesome is needed for swappy
-    noto-fonts ttf-liberation otf-font-awesome
+    # - noto-fonts-emoji is needed for icon (turtle icon for downloads, Telegram icons on notifications)
+    noto-fonts ttf-liberation otf-font-awesome noto-fonts-emoji
 
     pavucontrol # GUI audio manager.
     sway        # Main WM.
