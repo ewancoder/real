@@ -20,7 +20,7 @@ echo "104.21.32.39 rutracker.org" > /etc/hosts
 ln -fs /mnt/data/home/ssh /home/$username/.ssh
 ln -fs /mnt/data/home/projects /home/$username/projects
 ln -fs /mnt/data/home/work /home/$username/work
-ln -fs /mnt/data/home.zen /home/$username/.zen
+ln -fs /mnt/data/home/.zen /home/$username/.zen
 ln -fs /mnt/data/Dropbox /home/$username/Dropbox
 
 # DEV env pet projects
