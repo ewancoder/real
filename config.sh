@@ -69,6 +69,9 @@ user_packages=(
 
     # .NET development.
     dotnet-sdk-8.0 dotnet-sdk aspnet-runtime-8.0 aspnet-runtime
+
+    # VirtualBox for VDI.
+    virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
 )
 
 yay_user_packages=(
