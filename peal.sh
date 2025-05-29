@@ -27,8 +27,6 @@ mess "Set hostname - $hostname"
 echo "$hostname" > /etc/hostname
 mess "Set local timezone ($timezone)"
 ln -fs /usr/share/zoneinfo/$timezone /etc/localtime
-mess "Synchronize hardware clock"
-hwclock --systohc
 
 mess -t "Uncomment locales"
 for i in "${locale[@]}"; do
@@ -115,6 +113,14 @@ echo -e "[General]\nEnableNetworkConfiguration=true\n[Network]\nNameResolvingSer
 systemctl enable iwd systemd-resolved
 mkdir -p /etc/systemd/system/systemd-networkd-wait-online.service.d
 echo -e "[Service]\nExecStart=\nExecStart=/usr/lib/systemd/systemd-networkd-wait-online --interface=$wlan_interface" > /etc/systemd/system/systemd-networkd-wait-online.service.d/override.con0
+
+# Set up NTP.
+sed -i 's/#NTP=/NTP=time.google.com/g' /etc/systemd/timesyncd.conf
+timedatectl set-ntp true
+
+sleep 10
+mess "Synchronize hardware clock"
+hwclock --systohc # Consider not doing that.
 
 if [ ${#service} -gt 0 ]; then
     mess -t "Enable services"
