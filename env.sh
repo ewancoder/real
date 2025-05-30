@@ -60,9 +60,6 @@ hostname=archpc
 # /usr/share/zoneinfo folder.
 timezone=Europe/London
 
-# Set to 'dvorak' for a dvorak keymap.
-keymap=us
-
 # All needed locales. System locale is the first one.
 locale=( en_US.UTF-8 )
 

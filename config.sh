@@ -24,6 +24,7 @@ user_password="qwerty" # Leave empty to specify during install.
 windows_efi_volume="" # Only necessary for multiboot, so that GRUB is able to generate proper config.
 wlan_interface=wlan0
 shell=/bin/zsh
+keymap=dvorak # Set to 'us' to have a regular keymap.
 swapsize=20 # Swap size in Gigabytes, will be allocated on RAM.
 service=(
     docker
