@@ -46,8 +46,8 @@ sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 mess "Update packages including multilib"
 pacman -Syy
 
-mess "Remove /boot/intel-ucode.img if exists, to prevent conflicts"
-rm -f /boot/intel-ucode.img
+mess "Remove CPU ucodes if exists, to prevent conflicts"
+rm -f /boot/intel-ucode.img /boot/amd-ucode.img
 
 mess -t "Install packages"
 if [ ${#special_packages[@]} -gt 0 ] || [ ${#essential_packages[@]} -gt 0 ] || [ ${#user_packages[@]} -gt 0 ]; then
