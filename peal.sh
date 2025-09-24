@@ -122,6 +122,9 @@ sleep 10
 mess "Synchronize hardware clock"
 hwclock --systohc # Consider not doing that.
 
+# Change default SSH port.
+sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
+
 if [ ${#service} -gt 0 ]; then
     mess -t "Enable services"
     for s in "${service[@]}"; do

@@ -16,6 +16,7 @@ set -euo pipefail
 # If any of these are not true - you might need to tweak the script itself for your machine, not just this file.
 
 hostinstall=1
+ssh_port=58123 # Change this for SSHD deployments.
 username=ewancoder
 hostname=ivanpc
 timezone=Asia/Tbilisi
@@ -31,6 +32,7 @@ service=(
     bluetooth
     cronie
     systemd-networkd
+    sshd # For development env deployments.
 )
 
 user_packages=(
