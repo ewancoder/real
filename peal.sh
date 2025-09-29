@@ -112,7 +112,7 @@ mkdir -p /etc/iwd
 echo -e "[General]\nEnableNetworkConfiguration=true\n[Network]\nNameResolvingService=systemd" > /etc/iwd/main.conf
 systemctl enable iwd systemd-resolved
 mkdir -p /etc/systemd/system/systemd-networkd-wait-online.service.d
-echo -e "[Service]\nExecStart=\nExecStart=/usr/lib/systemd/systemd-networkd-wait-online --interface=$wlan_interface" > /etc/systemd/system/systemd-networkd-wait-online.service.d/override.con0
+echo -e "[Service]\nExecStart=\nExecStart=/usr/lib/systemd/systemd-networkd-wait-online --interface=$wlan_interface" > /etc/systemd/system/systemd-networkd-wait-online.service.d/override.conf
 
 # Set up NTP.
 sed -i 's/#NTP=/NTP=time.google.com/g' /etc/systemd/timesyncd.conf
