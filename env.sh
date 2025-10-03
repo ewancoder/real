@@ -104,6 +104,7 @@ essential_packages=(
     xdg-desktop-portal-wlr  # Abitily to share screens with wlroots compositor, uses slurp to select a screen.
     gnome-keyring           # Ability to save passwords for GTK apps (like Skype).
     swaybg  # Background for Sway.
+    swaylock # For locking the session/screens.
     fuzzel  # Application launcher.
 
     # Screenshotting tools.
