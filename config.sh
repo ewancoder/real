@@ -43,6 +43,7 @@ user_packages=(
     code            # VS Code.
     discord         # Official Discord client.
     encfs           # Encryption filesystem client for protecting folders.
+    wlsunset        # Control backlight color (warmer at night)
 
     # KDE PDF reader with many features (consider changing to vi-like one, KDE brings a lot of dependencies).
     # qt6-multimedia-ffmpeg or qt6-multimedia-gstreamer is a dependency of okular, preselect ffmpeg.
