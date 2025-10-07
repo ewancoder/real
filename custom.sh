@@ -55,6 +55,10 @@ if [[ $dotfiles_repo ]]; then
     echo "export RDP_USERNAME=$rdp_username" >> .secrets
     echo "export RDP_PASSWORD=$rdp_password" >> .secrets
     echo "export CRYPT_PASSWORD=$crypt_password" >> .secrets
+    git clone https://github.com/ewancoder/bsol /tmp/bsol
+    cp .etc/default/grub /etc/default/grub
+    cp -r /tmp/bsol/bsol /boot/grub/themes/
+    grub-mkconfig -o /boot/grub/grub.cfg
     chown -R $username:$username .
 fi
 
