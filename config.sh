@@ -15,7 +15,7 @@ set -euo pipefail
 #
 # If any of these are not true - you might need to tweak the script itself for your machine, not just this file.
 
-hostinstall=1
+hostinstall=0
 ssh_port=58123 # Change this for SSHD deployments.
 username=ewancoder
 hostname=ivanpc
@@ -80,6 +80,7 @@ user_packages=(
     virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
 )
 
+yay_ask=1 # Ask for confirmation when installing YAY packages.
 yay_user_packages=(
     dropbox             # Cloud storage.
     zoom                # Messaging for work.

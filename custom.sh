@@ -4,32 +4,40 @@ set -euo pipefail
 # This is a custom script that runs at the end of system installation.
 # Delete it if you do not need it.
 
-# (note to self) Update these 3 before install.
+# (note to self) Update these 4 before install.
 rdp_username=""
 rdp_password=""
+crypt_password=""
 git_work_email="work@email.com"
-
 dotfiles_repo="ewancoder/dotfiles"
-git_user_name="Ivan Zyranau"
-git_email="ewancoder@gmail.com"
 
 # Fix failing rutracker dns
 echo "104.21.32.39 rutracker.org" > /etc/hosts
 
 # Restore symlinks to mnt
-ln -fs /mnt/data/home/ssh /home/$username/.ssh
+mkdir -p /mnt/data/home/{projects,work,.zen}
+mkdir -p /mnt/data/Dropbox
+mkdir -p /mnt/data/security/{ssh,gnupg}
+mkdir -p /mnt/data/tyr
+chown $username:$username /mnt/data/home
+chown $username:$username /mnt/data/home/{projects,work,.zen}
+chown $username:$username /mnt/data/Dropbox
+chown $username:$username /mnt/data/security/{ssh,gnupg}
+chown 2000:2000 /mnt/data/tyr
 ln -fs /mnt/data/home/projects /home/$username/projects
 ln -fs /mnt/data/home/work /home/$username/work
 ln -fs /mnt/data/home/.zen /home/$username/.zen
 ln -fs /mnt/data/Dropbox /home/$username/Dropbox
+ln -fs /mnt/data/security/ssh /home/$username/.ssh
+ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
+ln -fs /mnt/data/tyr /data/tyr
 
 # DEV env pet projects
-ln -fs /mnt/data/pet/dp.pfx /root/dp.pfx
-mkdir -p /data
-ln -fs /mnt/data/pet/* /data/
+# TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
+# Also need to join it to Swarm etc. Basically use TyR deployment scripts at this stage. And not at laptop probably.
 
 # Enable backups.
-echo "0 */4 * * * /home/ewancoder/.local/bin/backup.sh" | crontab -
+echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 
 if [[ $dotfiles_repo ]]; then
     cd /home/$username
@@ -37,6 +45,8 @@ if [[ $dotfiles_repo ]]; then
     mv dotfiles/.git .git
     git config --global --add safe.directory /home/$username
     git reset --hard
+    git remote rm origin
+    git remote add origin git@github:$dotfiles_repo.git
     rm -R dotfiles
     echo "*" > .gitignore
     sed -i "s/work@email.com/$git_work_email/" .gitconfig-work
@@ -44,16 +54,7 @@ if [[ $dotfiles_repo ]]; then
     mv .git .dotfiles
     echo "export RDP_USERNAME=$rdp_username" >> .secrets
     echo "export RDP_PASSWORD=$rdp_password" >> .secrets
-
-    # Additional post-processing.
-    # For now always add it, I'm installing nvidia drivers later.
-    #if [[ ! "${special_packages[@]}" =~ "nvidia" ]]; then
-    #    echo "Removing --unsupported-gpu from Sway startup, because we are not using Nvidia."
-    #    sed -i "s/--unsupported-gpu//" .zprofile
-    #fi
-    sed -i "s/Ivan Zyranau/$git_user_name/" .gitconfig
-    sed -i "s/ewancoder@gmail.com/$git_email/" .gitconfig
-
+    echo "export CRYPT_PASSWORD=$crypt_password" >> .secrets
     chown -R $username:$username .
 fi
 

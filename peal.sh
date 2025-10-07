@@ -90,7 +90,11 @@ else
 fi
 
 mess "Install yay user packages"
-sudo -u $username yay -S --noconfirm ${yay_user_packages[@]}
+if [ $yay_ask -eq 1 ]; then
+    sudo -u $username yay -S ${yay_user_packages[@]}
+else
+    sudo -u $username yay -S --noconfirm ${yay_user_packages[@]}
+fi
 
 mess "Make sure PC doesn't die when pressing power button once"
 sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
@@ -99,6 +103,7 @@ sed -i 's/^#HandlePowerKeyLongPress=ignore/HandlePowerKeyLongPress=poweroff/' /e
 mess "Changing default shell"
 chsh -s $shell $username
 
+# TODO: Implement a choice: no swap, swap on RAM, or swap on FILE/partition.
 mess "Turn on Swap on RAM"
 echo "zram" > /etc/modules-load.d/zram.conf
 echo "ACTION==\"add\", KERNEL==\"zram0\", ATTR{initstate}==\"0\", ATTR{comp_algorithm}=\"zstd\", ATTR{disksize}=\"${swapsize}G\", RUN=\"/usr/bin/mkswap -U clear %N\", TAG+=\"systemd\"" > /etc/udev/rules.d/99-zram.rules
@@ -107,6 +112,7 @@ echo '/dev/zram0 none swap defaults,discard,pri=100 0 0' >> /etc/fstab
 mess "Removing unused / orphan packages, cleaning up"
 pacman -Rns `pacman -Qdtq` --noconfirm || true
 
+# TODO: Implement an option of ethernet, or both.
 mess "Set up wifi"
 mkdir -p /etc/iwd
 echo -e "[General]\nEnableNetworkConfiguration=true\n[Network]\nNameResolvingService=systemd" > /etc/iwd/main.conf

@@ -130,11 +130,13 @@ essential_packages=(
     xorg-xwayland           # Support for X apps under Wayland.
     cronie rsync            # For backups.
     zsh                     # Alternative shell.
+    inetutils               # Needed for 'hostname' command, for backup script to discern different devices.
 )
 
 # Additional user software.
 user_packages=( )
 yay_user_packages=( )
+yay_ask=1 # Ask for confirmation when installing yay packages.
 
 # Color constants.
 Green=$(tput setaf 2)

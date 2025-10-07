@@ -35,18 +35,6 @@ if [ -f custom.sh ]; then
     mess "Copy custom.sh to /mnt/"
     cp custom.sh /mnt/
 fi
-#cp makepkg.patch /mnt/root/
-#mess "Copy root and user scripts to /mnt/root"
-#if [ ! "$rootscript" == "" ]; then
-#    cp $rootscript /mnt/root
-#fi
-#for (( i = 0; i < ${#user[@]}; i++ )); do
-#    if [ ! "${userscript[$i]}" == "" ]; then
-#        cp ${userscript[$i]} /mnt/root
-#    fi
-#done
-#mess "Copy after-build script to /mnt/root"
-#cp after.sh /mnt/root
 
 mess "Go to arch-chroot and execute peal.sh"
 arch-chroot /mnt /peal.sh
