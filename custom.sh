@@ -4,9 +4,7 @@ set -euo pipefail
 # This is a custom script that runs at the end of system installation.
 # Delete it if you do not need it.
 
-# (note to self) Update these 4 before install.
-rdp_username=""
-rdp_password=""
+# (note to self) Update these 2 before install.
 crypt_password=""
 git_work_email="work@email.com"
 dotfiles_repo="ewancoder/dotfiles"
@@ -52,8 +50,6 @@ if [[ $dotfiles_repo ]]; then
     sed -i "s/work@email.com/$git_work_email/" .gitconfig-work
     git update-index --assume-unchanged .gitconfig-work
     mv .git .dotfiles
-    echo "export RDP_USERNAME=$rdp_username" >> .secrets
-    echo "export RDP_PASSWORD=$rdp_password" >> .secrets
     echo "export CRYPT_PASSWORD=$crypt_password" > /root/.secrets
     chmod 600 /root/.secrets
     git clone https://github.com/ewancoder/bsol /tmp/bsol
