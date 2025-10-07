@@ -20,7 +20,4 @@ ExecStart=
 ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin $username %I \$TERM
 """ > /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
-# TODO manual (for now):
-# 1. Change sshd port, permitrootlogin, and passwordauthentication settings.
-
 reboot

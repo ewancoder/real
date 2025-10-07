@@ -130,6 +130,8 @@ hwclock --systohc # Consider not doing that.
 
 # Change default SSH port.
 sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
+sed -i "s/^#\?PasswordAuthentication .*/PasswordAuthentication no/" /etc/ssh/sshd_config
+sed -i "s/^#\?PermitRootLogin .*/PermitRootLogin no/" /etc/ssh/sshd_config
 
 # Add current user to docker group for sudo-less access.
 usermod -aG docker $username
