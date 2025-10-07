@@ -4,9 +4,6 @@ set -euo pipefail
 # This is a custom script that runs at the end of system installation.
 # Delete it if you do not need it.
 
-# (note to self) Update these 2 before install.
-crypt_password=""
-git_work_email="work@email.com"
 dotfiles_repo="ewancoder/dotfiles"
 
 # Fix failing rutracker dns

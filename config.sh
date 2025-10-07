@@ -15,6 +15,11 @@ set -euo pipefail
 #
 # If any of these are not true - you might need to tweak the script itself for your machine, not just this file.
 
+# Custom variables for my own custom.sh
+crypt_password="abc"
+git_work_email="work@email.com"
+
+# Common variables
 hostinstall=0
 ssh_port=58123 # Change this for SSHD deployments.
 username=ewancoder
