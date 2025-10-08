@@ -53,6 +53,7 @@ if [[ $dotfiles_repo ]]; then
     cp .etc/default/grub /etc/default/grub
     cp -r /tmp/bsol/bsol /boot/grub/themes/
     grub-mkconfig -o /boot/grub/grub.cfg
+    ln -s /home/$username/.config/sway/$(hostname) /home/$username/.config/sway/machine
     chown -R $username:$username .
 fi
 
