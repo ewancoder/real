@@ -85,6 +85,7 @@ user_packages=(
     virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
 )
 
+aur_install=1 # Specify 0 here to skip installing ANY aur packages.
 yay_ask=1 # Ask for confirmation when installing YAY packages.
 yay_user_packages=(
     dropbox             # Cloud storage.
