@@ -14,6 +14,7 @@ mkdir -p /mnt/data/home/{projects,work,.zen}
 mkdir -p /mnt/data/Dropbox
 mkdir -p /mnt/data/security/{ssh,gnupg}
 mkdir -p /mnt/data/tyr
+mkdir -p /data
 chown $username:$username /mnt/data/home
 chown $username:$username /mnt/data/home/{projects,work,.zen}
 chown $username:$username /mnt/data/Dropbox
