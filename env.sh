@@ -100,7 +100,7 @@ special_packages=(
 
 # Essential packages for a working WM environment.
 essential_packages=(
-    wlroots                 # Wayland composer, dependency for many WMs.
+    wlroots0.19             # Wayland composer, dependency for many WMs.
     xdg-desktop-portal-wlr  # Abitily to share screens with wlroots compositor, uses slurp to select a screen.
     gnome-keyring           # Ability to save passwords for GTK apps (like Skype).
     swaybg  # Background for Sway.
