@@ -70,6 +70,7 @@ user_packages=(
     xournalpp           # Handwritten brainstorming journal. (TODO: alternatively try Lorien: aur lorien-bin package)
     ncdu                # NCurses version of du, to see how much space is taken.
     jellyfin-mpv-shim   # For integrating mpv with jellyfin.
+    firefox             # I'm using it in kiosk mode for NitroType typing.
 
     # Git for development: duplicated here in case we decide we don't need YAY.
     # github-cli is needed for auth credential manager to be able to authenticate (without ssh).
