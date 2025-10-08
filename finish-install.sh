@@ -20,4 +20,9 @@ ExecStart=
 ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin $username %I \$TERM
 """ > /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
+read -p "After reboot - check this file for comments, and check your browser for Dropbox sign in"
+# Install the following manually (from AUR/github/appimages):
+# - uhk-agent-appimage
+# - sptlrx-bin
+
 reboot

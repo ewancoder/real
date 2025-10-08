@@ -89,7 +89,7 @@ else
     pacman -U --noconfirm /tmp/aur/*.pkg.tar.zst
 fi
 
-if [ $aur_install -eq 1 ]; then
+if [ $aur_install -eq 1 ] && [ "${#yay_user_packages[@]}" -gt 0 ]; then
     mess "Install AUR user packages"
     if [ $yay_ask -eq 1 ]; then
         sudo -u $username yay -S ${yay_user_packages[@]}
@@ -98,6 +98,11 @@ if [ $aur_install -eq 1 ]; then
     fi
 else
     mess -w "Skipping installing AUR packages. Make sure you install them manually after system install."
+fi
+
+if [ "${#flatpak_packages[@]}" -gt 0 ]; then
+    mess "Install Flatpak packages"
+    sudo flatpak install ${flatpak_packages[@]} --noninteractive --system
 fi
 
 mess "Make sure PC doesn't die when pressing power button once"

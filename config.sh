@@ -90,12 +90,21 @@ aur_install=1 # Specify 0 here to skip installing ANY aur packages.
 yay_ask=1 # Ask for confirmation when installing YAY packages.
 yay_user_packages=(
     dropbox             # Cloud storage.
-    zoom                # Messaging for work.
+    #zoom                # Messaging for work.
     uhk-agent-appimage  # UHK agent.
-    teams-for-linux-bin # Teams (instead of Skype).
-    slack-desktop       # Slack.
+    #teams-for-linux-bin # Teams (instead of Skype).
+    #slack-desktop       # Slack.
     sptlrx-bin          # Real-time lyrics for Spotify.
-    anki-bin            # Anki cards app.
-    zen-browser-bin     # Main browser.
-    rider               # .NET development.
+    #anki-bin            # Anki cards app.
+    #zen-browser-bin     # Main browser.
+    #rider               # .NET development.
+)
+
+flatpak_packages=(
+    us.zoom.Zoom
+    com.github.IsmaelMartinez.teams_for_linux
+    com.slack.Slack
+    net.ankiweb.Anki
+    app.zen_browser.zen
+    com.jetbrains.Rider
 )
