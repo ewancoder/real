@@ -51,7 +51,7 @@ cp $install_folder/eal.sh $install_folder/sfs/
 cp $install_folder/env.sh $install_folder/sfs/
 cp $install_folder/config.sh $install_folder/sfs/
 cp $install_folder/peal.sh $install_folder/sfs/
-cp $install_folder/finish-install.sh $install_folder/sfs/
+cp $install_folder/firstboot.sh $install_folder/sfs/
 if [ -f $install_folder/custom.sh ]; then
     cp $install_folder/custom.sh $install_folder/sfs/
 fi

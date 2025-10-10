@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # This is the main configuration file that you will edit.
-# Also check out two more files: custom.sh and finish-install.sh, you might want to edit them as well.
+# Also check out two more files: custom.sh and firstboot.sh, you might want to edit them as well.
 # (NOTE TO SELF): update custom.sh before install
 
 # This script assumes the following:

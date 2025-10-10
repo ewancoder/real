@@ -135,13 +135,13 @@ if [ -f custom.sh ]; then
     chmod +x $install_folder/custom.sh
 fi
 
-mess "Copy finish-install.sh"
-sed -i "s/after_reboot_packages=()/after_reboot_packages=( $after_reboot_packages )/g" finish-install.sh
-sed -i "s/wifi_ssid=''/wifi_ssid='$wifi_ssid'/g" finish-install.sh
-sed -i "s/wifi_password=''/wifi_password='$wifi_password'/g" finish-install.sh
-sed -i "s/username=''/username='$username'/g" finish-install.sh
-cp finish-install.sh $install_folder/finish-install.sh
-chmod +x $install_folder/finish-install.sh
+mess "Copy firstboot.sh"
+sed -i "s/after_reboot_packages=()/after_reboot_packages=( $after_reboot_packages )/g" firstboot.sh
+sed -i "s/wifi_ssid=''/wifi_ssid='$wifi_ssid'/g" firstboot.sh
+sed -i "s/wifi_password=''/wifi_password='$wifi_password'/g" firstboot.sh
+sed -i "s/username=''/username='$username'/g" firstboot.sh
+cp firstboot.sh $install_folder/firstboot.sh
+chmod +x $install_folder/firstboot.sh
 
 mess "CD into temp folder"
 cd $install_folder
@@ -159,6 +159,6 @@ fi
 mess -p "Remove the temporary folder. This is the last step, feel free to Ctrl+C if you want to keep it"
 rm -rf $install_folder
 
-mess -p "That's it, your system is installed. Run /finish-install.sh after booting in, then reboot again. [REBOOT]"
-mess -w "After reboot - login as ROOT, and run /finish-install.sh to finish the installation"
+mess -p "That's it, your system is installed. Run /firstboot.sh after booting in, then reboot again. [REBOOT]"
+mess -w "After reboot - login as ROOT, and run /firstboot.sh to finish the installation"
 reboot

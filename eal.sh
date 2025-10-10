@@ -41,8 +41,8 @@ mess -t "Chroot to system"
 
 # TODO: figure out how to bind mount /tmp there and reuse it.
 # Copy all other install files to /mnt folder (your new system).
-mess "Copy {env,config,peal,finish-install}.sh to /mnt/"
-cp {env,config,peal,finish-install}.sh /mnt/
+mess "Copy {env,config,peal,firstboot}.sh to /mnt/"
+cp {env,config,peal,firstboot}.sh /mnt/
 
 if [ -f custom.sh ]; then
     # Copy custom.sh only if it exists - user might not have custom scripts.
@@ -56,7 +56,7 @@ mess "Go to arch-chroot and execute peal.sh"
 arch-chroot /mnt /peal.sh
 
 # After peal.sh stops execution - we've set up everything.
-# Clean up the files (remove them) except for finish-install.sh, which we need to execute after reboot.
+# Clean up the files (remove them) except for firstboot.sh, which we need to execute after reboot.
 mess "Remove files from chroot system"
 rm -f /mnt/{env,config,peal,custom}.sh
 

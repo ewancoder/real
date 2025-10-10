@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "Performing after-install setup"
 # The variables are substituted automatically from config.
 after_reboot_packages=()
 wifi_ssid=''
@@ -22,15 +23,13 @@ if [ ${#after_reboot_packages[@]} -gt 0 ]; then
     pacman -S $after_reboot_packages --noconfirm
 fi
 
-# Setup autologin for the user.
-mkdir -p /etc/systemd/system/getty@tty1.service.d
-echo """[Service]
-ExecStart=
-ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin $username %I \$TERM
-""" > /etc/systemd/system/getty@tty1.service.d/autologin.conf
+# Change autologin for the user instead of the root.
+sed -i "s/root/$username/g" /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
 # Delete this script.
-rm /finish-install.sh
+sed -i '/firstboot.sh/d' /root/.bash_profile
+rm /firstboot.sh
 
+# Reboot again.
 echo "All done!"
 reboot

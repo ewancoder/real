@@ -243,3 +243,12 @@ if [ -f /custom.sh ]; then
     mess -t "Execute custom script"
     /custom.sh
 fi
+
+# Setup autologin for root for the firstboot script to be executed automatically after reboot.
+mkdir -p /etc/systemd/system/getty@tty1.service.d
+echo """[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin root %I \$TERM
+""" > /etc/systemd/system/getty@tty1.service.d/autologin.conf
+
+echo '/firstboot.sh' > /root/.bash_profile
