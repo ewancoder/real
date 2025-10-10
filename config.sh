@@ -19,6 +19,17 @@ set -euo pipefail
 crypt_password="abc"
 git_work_email="work@email.com"
 
+# Swap configuration:
+# For partition:
+    #swap_partition="/dev/sdx8"
+# For file:
+    #swap_file="/swap"
+    #swap_file_size=64 # In GB.
+# For RAM - just leave both of these empty:
+swap_partition=""
+swap_file=""
+swap_file_size=64
+
 # Common variables
 hostinstall=0
 ssh_port=58123 # Change this for SSHD deployments.
