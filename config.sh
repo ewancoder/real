@@ -15,6 +15,10 @@ set -euo pipefail
 #
 # If any of these are not true - you might need to tweak the script itself for your machine, not just this file.
 
+# WiFi settings.
+wifi_ssid="ssid"
+wifi_password="pass"
+
 # Custom variables for my own custom.sh
 crypt_password="abc"
 git_work_email="work@email.com"
@@ -95,6 +99,13 @@ user_packages=(
 
     # VirtualBox for VDI.
     virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
+)
+
+after_reboot_packages=(
+    nvidia-open                 # Main NVIDIA open driver.
+    steam                       # Steam. Relies on NVidia drivers, so installed here as well.
+    lib32-nvidia-utils          # Needed for steam & 32-bit apps.
+    nvidia-container-toolkit    # Needed to pass GPU to our Jellyfin container.
 )
 
 aur_install=1 # Specify 0 here to skip installing ANY aur packages.

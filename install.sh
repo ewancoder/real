@@ -136,6 +136,10 @@ if [ -f custom.sh ]; then
 fi
 
 mess "Copy finish-install.sh"
+sed -i "s/after_reboot_packages=()/after_reboot_packages=( $after_reboot_packages )/g" finish-install.sh
+sed -i "s/wifi_ssid=''/wifi_ssid='$wifi_ssid'/g" finish-install.sh
+sed -i "s/wifi_password=''/wifi_password='$wifi_password'/g" finish-install.sh
+sed -i "s/username=''/username='$username'/g" finish-install.sh
 cp finish-install.sh $install_folder/finish-install.sh
 chmod +x $install_folder/finish-install.sh
 
@@ -156,4 +160,5 @@ mess -p "Remove the temporary folder. This is the last step, feel free to Ctrl+C
 rm -rf $install_folder
 
 mess -p "That's it, your system is installed. Run /finish-install.sh after booting in, then reboot again. [REBOOT]"
+mess -w "After reboot - login as ROOT, and run /finish-install.sh to finish the installation"
 reboot

@@ -1,28 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-read -p "WiFi password: " password
-read -p "Autologin username: " username
+# The variables are substituted automatically from config.
+after_reboot_packages=()
+wifi_ssid=''
+wifi_password=''
+username=''
 
-# This is the script that is copied to installed system to be ran after reboot.
-
+# Link resolv.conf for internet DNS to work.
 ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-iwctl --passphrase $password station wlan0 connect "skazlojop"
+# Connect to wifi and remember the network.
+iwctl --passphrase "$wifi_password" station wlan0 connect "$wifi_ssid"
+echo "Waiting for internet connection for 10 seconds..."
 sleep 10
 
-pacman -Syyu
-pacman -S nvidia-open steam lib32-nvidia-utils nvidia-container-toolkit --noconfirm
+# Install after-reboot packages.
+if [ ${#after_reboot_packages[@]} -gt 0 ]; then
+    echo "Installing packages"
+    pacman -Syyu
+    pacman -S $after_reboot_packages --noconfirm
+fi
 
+# Setup autologin for the user.
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 echo """[Service]
 ExecStart=
 ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin $username %I \$TERM
 """ > /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
-read -p "After reboot - check this file for comments, and check your browser for Dropbox sign in"
-# Install the following manually (from AUR/github/appimages):
-# - uhk-agent-appimage
-# - sptlrx-bin
+# Delete this script.
+rm /finish-install.sh
 
+echo "All done!"
 reboot

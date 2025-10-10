@@ -4,6 +4,9 @@ set -euo pipefail
 # This is a custom script that runs at the end of system installation.
 # Delete it if you do not need it.
 
+# TODO: (need to do after install manually)
+# 1. Login to Dropbox on first start.
+
 dotfiles_repo="ewancoder/dotfiles"
 
 # Fix failing rutracker dns
