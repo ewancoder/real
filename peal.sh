@@ -71,8 +71,8 @@ rm -f /boot/intel-ucode.img /boot/amd-ucode.img
 
 # Install all the packages from $special_packages, $essential_packages, and $user_packages from config.
 mess -t "Install packages"
-if [ ${#special_packages[@]} -gt 0 ] || [ ${#essential_packages[@]} -gt 0 ] || [ ${#user_packages[@]} -gt 0 ]; then
-    pacman -S ${special_packages[@]} ${essential_packages[@]} ${user_packages[@]} --noconfirm
+if [ ${#packages[@]} -gt 0 ]; then
+    pacman -S ${packages[@]} --noconfirm
 else
     mess "No packages to install, skipping..."
 fi
@@ -237,9 +237,9 @@ sed -i "s/^#\?PermitRootLogin .*/PermitRootLogin no/" /etc/ssh/sshd_config
 usermod -aG docker $username
 
 # Enable all the systemd services that are specified in the config.
-if [ ${#service} -gt 0 ]; then
+if [ ${#services} -gt 0 ]; then
     mess -t "Enable services"
-    for s in "${service[@]}"; do
+    for s in "${services[@]}"; do
         mess "Enable $s service"
         systemctl enable "$s"
     done

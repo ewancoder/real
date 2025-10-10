@@ -3,7 +3,7 @@ set -euo pipefail
 
 echo "Performing after-install setup"
 # The variables are substituted automatically from config.
-after_reboot_packages=()
+firstboot_packages=()
 wifi_ssid=''
 wifi_password=''
 username=''
@@ -17,10 +17,10 @@ echo "Waiting for internet connection for 10 seconds..."
 sleep 10
 
 # Install after-reboot packages.
-if [ ${#after_reboot_packages[@]} -gt 0 ]; then
+if [ ${#firstboot_packages[@]} -gt 0 ]; then
     echo "Installing packages"
     pacman -Syyu
-    pacman -S $after_reboot_packages --noconfirm
+    pacman -S $firstboot_packages --noconfirm
 fi
 
 # Change autologin for the user instead of the root.

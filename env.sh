@@ -63,81 +63,11 @@ timezone=Europe/London
 # All needed locales. System locale is the first one.
 locale=( en_US.UTF-8 )
 
-# Packages that are essential for the system to work (WM-agnostic): drivers, utils, etc.
-special_packages=(
-    intel-ucode # Intel CPU security patches, for AMD use amd-ucode.
-    #nvidia-open # Nvidia open-source latest proprietary drivers.
+# Packages and services.
+packages=( )
+services=( )
+firstboot_packages=( )
 
-    # GRUB bootloader:
-    # - efibootmgr is needed to see EFI volumes.
-    # - os-prober is needed to generate entry for Windows (if it's installed).
-    grub efibootmgr os-prober
-
-    sudo    # SUDO to be able to run sudo by a user.
-    iwd     # Network daemon to be able to connect to Wi-Fi.
-
-    # Needed to be able to build YAY (can be uninstalled later I guess?).
-    base-devel git go
-
-    # Sound system.
-    pipewire pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
-
-    # Bluetooth support.
-    bluez bluez-utils
-
-    # Docker. Script enables it later so we need it here not to break it.
-    # If you do not need docker - remove it from here and from below.
-    # buildx is needed for Rider docker debug
-    docker docker-compose docker-buildx
-
-    playerctl   # In order to be able to control players with multimedia keys, systemwide.
-
-    unzip       # Archives management. For now I only needed to unzip. Will add others here later.
-
-    btrfs-progs # Utility to manage BTRFS filesystem. Might be handy to manipulate drives live.
-    ntfs-3g     # NTFS driver.
-)
-
-# Essential packages for a working WM environment.
-essential_packages=(
-    wlroots0.19             # Wayland composer, dependency for many WMs.
-    xdg-desktop-portal-wlr  # Abitily to share screens with wlroots compositor, uses slurp to select a screen.
-    gnome-keyring           # Ability to save passwords for GTK apps (like Skype).
-    swaybg  # Background for Sway.
-    swaylock # For locking the session/screens.
-    fuzzel  # Application launcher.
-
-    # Screenshotting tools.
-    # - slurp is used to select part of the screen and output to stdout (and to select a monitor to screen share).
-    # - grim is used to screenshot the selected part (or whole monitor) and output to file (or pipe).
-    # - wl-clipboard is used to manage clipboard in Wayland (and pipe grim output to it).
-    # - swappy is used to edit screenshots inline
-    slurp grim wl-clipboard swappy
-
-    # Fonts (TODO: figure out which ones I need).
-    # - otf-font-awesome is needed for swappy
-    # - noto-fonts-emoji is needed for icon (turtle icon for downloads, Telegram icons on notifications)
-    noto-fonts ttf-liberation otf-font-awesome noto-fonts-emoji
-
-    pavucontrol # GUI audio manager.
-    sway        # Main WM.
-    foot        # Terminal for Wayland.
-    libnotify   # Notification subsystem (use notify-send).
-    mako        # Notification daemon (shows notifications in Wayland).
-    net-tools   # For ifconfig for script that shows status of downloads/uploads.
-
-    qt5-wayland qt6-wayland # Wayland support for QT apps.
-    xorg-xwayland           # Support for X apps under Wayland.
-    cronie rsync            # For backups.
-    zsh                     # Alternative shell.
-    inetutils               # Needed for 'hostname' command, for backup script to discern different devices.
-    flatpak                 # A temporary substitude for some AUR packages.
-    xdg-desktop-portal      # These two are needed for flatpak to be able to talk to Wayland system.
-    xdg-desktop-portal-gtk
-)
-
-# Additional user software.
-user_packages=( )
 yay_user_packages=( )
 yay_ask=1 # Ask for confirmation when installing yay packages.
 flatpak_packages=( )
@@ -220,4 +150,11 @@ mess() {
             read -rp "$Bold${Yellow}Continue [ENTER]$Def"
         fi
     fi
+}
+
+loadpackages() {
+    for pkg in "${install[@]}"; do
+        file="packages/$pkg.sh"
+        source "$file"
+    done
 }

@@ -115,6 +115,9 @@ mkdir -p $install_folder
 mess "Copy env.sh, config.sh"
 cp env.sh config.sh $install_folder
 
+mess "Copy packages folder"
+cp -r packages $install_folder/
+
 mess "Prepare eal.sh, make it executable"
 prepare eal.sh $install_folder/eal.sh
 chmod +x $install_folder/eal.sh
@@ -136,7 +139,7 @@ if [ -f custom.sh ]; then
 fi
 
 mess "Copy firstboot.sh"
-sed -i "s/after_reboot_packages=()/after_reboot_packages=( $after_reboot_packages )/g" firstboot.sh
+sed -i "s/firstboot_packages=()/firstboot_packages=( $firstboot_packages )/g" firstboot.sh
 sed -i "s/wifi_ssid=''/wifi_ssid='$wifi_ssid'/g" firstboot.sh
 sed -i "s/wifi_password=''/wifi_password='$wifi_password'/g" firstboot.sh
 sed -i "s/username=''/username='$username'/g" firstboot.sh

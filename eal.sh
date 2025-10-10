@@ -44,6 +44,9 @@ mess -t "Chroot to system"
 mess "Copy {env,config,peal,firstboot}.sh to /mnt/"
 cp {env,config,peal,firstboot}.sh /mnt/
 
+mess "Copy packages folder to /mnt/"
+cp -r packages /mnt/
+
 if [ -f custom.sh ]; then
     # Copy custom.sh only if it exists - user might not have custom scripts.
     mess "Copy custom.sh to /mnt/"
@@ -59,6 +62,7 @@ arch-chroot /mnt /peal.sh
 # Clean up the files (remove them) except for firstboot.sh, which we need to execute after reboot.
 mess "Remove files from chroot system"
 rm -f /mnt/{env,config,peal,custom}.sh
+rm -rf /mnt/packages
 
 # Exic eal.sh and give the control back to the entry point (install.sh).
 mess "Unmount all within /mnt (unmount installed system)"
