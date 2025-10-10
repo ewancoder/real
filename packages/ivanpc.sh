@@ -64,3 +64,12 @@ services+=(
     cronie  # CRON jobs (regular backups).
     sshd    # SSH server.
 )
+
+flatpak+=(
+    us.zoom.Zoom
+    com.github.IsmaelMartinez.teams_for_linux
+    com.slack.Slack
+    net.ankiweb.Anki
+    app.zen_browser.zen
+    com.jetbrains.Rider
+)

@@ -69,12 +69,3 @@ yay_user_packages=(
     #zen-browser-bin     # Main browser.
     #rider               # .NET development.
 )
-
-flatpak_packages=(
-    us.zoom.Zoom
-    com.github.IsmaelMartinez.teams_for_linux
-    com.slack.Slack
-    net.ankiweb.Anki
-    app.zen_browser.zen
-    com.jetbrains.Rider
-)
