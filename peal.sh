@@ -147,9 +147,15 @@ fi
 
 # Configure power button to not do anything (ignore).
 # Only listen to it on a long press.
+# Also disable sleep for laptops (lid and button events) cause most likely sleep doesn't work correctly.
 mess "Make sure PC doesn't die when pressing power button once"
 sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#HandlePowerKeyLongPress=ignore/HandlePowerKeyLongPress=poweroff/' /etc/systemd/logind.conf
+sed -i 's/^#HandleRebootKey=reboot/HandleRebootKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#HandleRebootKeyLongPress=poweroff/HandleRebootKeyLongPress=reboot/' /etc/systemd/logind.conf
+sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#HandleLidSwitch=suspend/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
+sed -i 's/^#HandleLidSwitchExternalPower=suspend/HandleLidSwitchExternalPower=ignore/' /etc/systemd/logind.conf
 
 # Set current/default shell from config.
 mess "Changing default shell"
