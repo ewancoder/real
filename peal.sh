@@ -116,11 +116,18 @@ if which yay > /dev/null; then
     mess "Yay already installed, skipping installation"
 else
     # Install YAY - helper to install AUR packages automatically.
+    remove_go=0
+    which go || remove_go=1
+    pacman -S go # Needed to get & compile yay.
     mess "Install yay"
     git clone --branch yay --single-branch https://github.com/archlinux/aur.git /tmp/aur
     chown -R $username /tmp/aur
     runuser -l $username -c 'cd /tmp/aur && makepkg'
     pacman -U --noconfirm /tmp/aur/*.pkg.tar.zst
+    if [ $remove_go -eq 1 ]; then
+        # Delete go if installed just for building yay, and not from user packages.
+        pacman -R --noconfirm go
+    fi
 fi
 
 if [ $aur_install -eq 1 ] && [ "${#yay_user_packages[@]}" -gt 0 ]; then
