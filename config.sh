@@ -26,7 +26,7 @@ git_work_email="work@email.com"
     #swap_file="/swap"
     #swap_file_size=64 # In GB.
 # For RAM - just leave both of these empty:
-swap_partition=""
+swap_partition="" # If you are using a partition - make sure to format it (with mkswap) manually.
 swap_file=""
 swap_file_size=64
 

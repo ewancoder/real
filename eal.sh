@@ -3,6 +3,9 @@ set -euo pipefail
 
 mess -t "Mounting volumes"
 mess -w "This step is not implemented yet. Please, make sure you mount your root filesystem and all the volumes to /mnt\nYou can safely press enter - we will enter a BASH session. After you mount everything - type 'exit' to exit the bash session and continue script installation."
+if [ ! -z $swap_partition ]; then
+    mess -w "Make sure to manually format the swap partition: mkswap $swap_partition"
+fi
 # Allows us to mount all needed volumes manually, and then continue the script by exiting this shell (exit command).
 /bin/bash
 
