@@ -19,7 +19,7 @@ install=(
     gpu-nvidia-docker   # GPU drivers support.
     core-system         # Core Arch system.
     sway                # Core Sway UI environment.
-    ivanpc              # Personal packages.
+    ewancoder           # Personal packages shared across devices.
 )
 loadpackages # Loads the packages into the variable.
 
