@@ -73,3 +73,8 @@ flatpak+=(
     app.zen_browser.zen
     com.jetbrains.Rider
 )
+
+aur=(
+    uhk-agent-appimage  # UHK agent.
+    sptlrx-bin          # Real-time lyrics for Spotify.
+)

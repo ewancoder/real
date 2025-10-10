@@ -130,15 +130,15 @@ else
     fi
 fi
 
-if [ $aur_install -eq 1 ] && [ "${#yay_user_packages[@]}" -gt 0 ]; then
+if [ $aur_install -eq 1 ] && [ "${#aur[@]}" -gt 0 ]; then
     # If we have any AUR packages in the config - install them using YAY...
     mess "Install AUR user packages"
     if [ $yay_ask -eq 1 ]; then
         # ...with confirmation required if $yay_ask is 1.
-        sudo -u $username yay -S ${yay_user_packages[@]}
+        sudo -u $username yay -S ${aur[@]}
     else
         # ...or without confirmation, completely automatic.
-        sudo -u $username yay -S --noconfirm ${yay_user_packages[@]}
+        sudo -u $username yay -S --noconfirm ${aur[@]}
     fi
 else
     mess -w "Skipping installing AUR packages. Make sure you install them manually after system install."

@@ -26,3 +26,9 @@ flatpak+=(
     us.zoom.Zoom
     com.slack.Slack
 )
+
+# AUR packages, installed using YAY.
+aur=(
+    uhk-agent-appimage
+    sptlrx-bin
+)
