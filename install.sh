@@ -133,12 +133,6 @@ mess "Prepare peal.sh, make it executable"
 prepare peal.sh $install_folder/peal.sh
 chmod +x $install_folder/peal.sh
 
-if [ -f custom.sh ]; then
-    mess "Prepare custom.sh, make it executable"
-    prepare custom.sh $install_folder/custom.sh
-    chmod +x $install_folder/custom.sh
-fi
-
 for script in scripts/*; do
     filename=$(basename "$script")
     mess "Prepare $filename, make it executable"

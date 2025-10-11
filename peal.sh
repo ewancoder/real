@@ -249,11 +249,10 @@ if [ ${#services} -gt 0 ]; then
     done
 fi
 
-# Execute your custom script if any.
-if [ -f /custom.sh ]; then
-    mess -t "Execute custom script"
-    /custom.sh
-fi
+for script in scripts/*; do
+    mess -t "Execute personal script: $script"
+    $script
+done
 
 # Setup autologin for root for the firstboot script to be executed automatically after reboot.
 mkdir -p /etc/systemd/system/getty@tty1.service.d
