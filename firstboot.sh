@@ -4,6 +4,7 @@ set -euo pipefail
 echo "Performing after-install setup"
 # The variables are substituted automatically from config.
 firstboot_packages=()
+flatpak=()
 wifi_ssid=''
 wifi_password=''
 username=''
@@ -21,6 +22,16 @@ if [ ${#firstboot_packages[@]} -gt 0 ]; then
     echo "Installing packages"
     pacman -Syyu
     pacman -S $firstboot_packages --noconfirm
+fi
+
+if [ "${#flatpak[@]}" -gt 0 ]; then
+    echo "Installing flatpak packages"
+    # If flatpak packages exist in config - install them.
+    # This will only work if flatpak itself was installed in the system.
+    # (one of the packages in config should be flatpak)
+    mess "Install Flatpak packages"
+    sudo pacman -S --noconfirm flatpak
+    sudo flatpak install ${flatpak[@]} --noninteractive --system
 fi
 
 # Change autologin for the user instead of the root.

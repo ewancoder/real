@@ -156,14 +156,6 @@ else
     mess -w "Skipping installing AUR packages. Make sure you install them manually after system install."
 fi
 
-if [ "${#flatpak[@]}" -gt 0 ]; then
-    # If flatpak packages exist in config - install them.
-    # This will only work if flatpak itself was installed in the system.
-    # (one of the packages in config should be flatpak)
-    mess "Install Flatpak packages"
-    sudo flatpak install ${flatpak[@]} --noninteractive --system
-fi
-
 # Configure power button to not do anything (ignore).
 # Only listen to it on a long press.
 # Also disable sleep for laptops (lid and button events) cause most likely sleep doesn't work correctly.
