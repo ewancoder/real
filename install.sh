@@ -165,9 +165,9 @@ else
     ./eal.sh
 fi
 
-mess -p "Remove the temporary folder. This is the last step, feel free to Ctrl+C if you want to keep it"
+#mess -p "Remove the temporary folder. This is the last step, feel free to Ctrl+C if you want to keep it"
 rm -rf $install_folder
 
-mess -p "That's it, your system is installed. Run /firstboot.sh after booting in, then reboot again. [REBOOT]"
-mess -w "After reboot - login as ROOT, and run /firstboot.sh to finish the installation"
+mess -t "Your system will reboot in 10 seconds to continue the installation... Press Ctrl+C if you want to avoid this."
+sleep 10
 reboot
