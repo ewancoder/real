@@ -152,7 +152,9 @@ if [ $aur_install -eq 1 ] && [ "${#aur[@]}" -gt 0 ]; then
         # ...or without confirmation, completely automatic.
         echo "$username ALL=(ALL:ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers
         sudo -u $username yay -S --noconfirm ${aur[@]}
-        #sed -i '$d' /etc/sudoers # Delete last line - our sudoers entry.
+        # Hacky way to remove last line without breaking our script ($d breaks it).
+        head -n -1 /etc/sudoers > temp && mv temp /etc/sudoers
+        chmod 440 /etc/sudoers
     fi
 else
     mess -w "Skipping installing AUR packages. Make sure you install them manually after system install."
