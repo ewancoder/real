@@ -28,7 +28,7 @@ flatpak+=(
 )
 
 # AUR packages, installed using YAY.
-aur=(
+aur+=(
     uhk-agent-appimage
     sptlrx-bin
 )

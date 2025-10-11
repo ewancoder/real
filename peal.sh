@@ -64,6 +64,14 @@ sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 mess "Update packages including multilib"
 pacman -Syy
 
+# Re-generate keyring just in case something is bad.
+# Sometimes this is needed.
+# Do this after adding multilib source just in case.
+# TODO: Needs investigation why it happens.
+pacman-key --init
+pacman-key --populate archlinux
+pacman -Syy
+
 # When we are installing either Intel or AMD cpu microcodes - installation will fail if they already exist.
 # So we are removing them here if they exist.
 mess "Remove CPU ucodes if exists, to prevent conflicts"
@@ -122,7 +130,7 @@ else
     # Install YAY - helper to install AUR packages automatically.
     remove_go=0
     which go || remove_go=1
-    pacman -S go # Needed to get & compile yay.
+    pacman -S --noconfirm go # Needed to get & compile yay.
     mess "Install yay"
     git clone --branch yay --single-branch https://github.com/archlinux/aur.git /tmp/aur
     chown -R $username /tmp/aur
@@ -257,9 +265,6 @@ fi
 
 # Setup autologin for root for the firstboot script to be executed automatically after reboot.
 mkdir -p /etc/systemd/system/getty@tty1.service.d
-echo """[Service]
-ExecStart=
-ExecStart=-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin root %I \$TERM
-""" > /etc/systemd/system/getty@tty1.service.d/autologin.conf
+echo -e "[Service]\nExecStart=\nExecStart=-/sbin/agetty -o '-p -f -- \\\\\\\\u' --noclear --autologin root %I \$TERM\n" > autologin-test
 
 echo '/firstboot.sh' > /root/.bash_profile

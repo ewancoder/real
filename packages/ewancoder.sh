@@ -74,7 +74,7 @@ flatpak+=(
     com.jetbrains.Rider
 )
 
-aur=(
+aur+=(
     uhk-agent-appimage  # UHK agent.
     sptlrx-bin          # Real-time lyrics for Spotify.
 )
