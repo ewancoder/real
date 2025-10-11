@@ -4,8 +4,9 @@ set -euo pipefail
 # This script installs Dropbox for user $username.
 # It is started with the Sway session.
 
+cd /home/$username
 curl -L "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-chown -R $username:$username ~/.dropbox-dist
+chown -R $username:$username /home/$username/.dropbox-dist
 
 # Add starting dropbox with the session if not added yet.
 if [ ! -f /home/$username/.config/sway/config ]; then
