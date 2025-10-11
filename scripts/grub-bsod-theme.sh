@@ -8,3 +8,4 @@ set -euo pipefail
 git clone https://github.com/ewancoder/bsol /tmp/bsol
 cp -r /tmp/bsol/bsol /boot/grub/themes/
 echo 'GRUB_THEME="/boot/grub/themes/bsol/theme.txt"' >> /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg

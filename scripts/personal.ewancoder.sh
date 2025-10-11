@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This is a custom script that runs at the end of system installation.
-# Delete it if you do not need it.
-
-# TODO: (need to do after install manually)
-# 1. Login to Dropbox on first start.
+# This is my (ewancoder) custom script that runs at the end of system installation.
 
 dotfiles_repo="ewancoder/dotfiles"
 
-# Fix failing rutracker dns
+# Fix failing rutracker dns.
 echo "104.21.32.39 rutracker.org" > /etc/hosts
 
-# Restore symlinks to mnt
+# Restore symlinks to mnt.
 mkdir -p /mnt/data/home/{projects,work,.zen}
 mkdir -p /mnt/data/Dropbox
 mkdir -p /mnt/data/security/{ssh,gnupg}
@@ -31,11 +27,12 @@ ln -fs /mnt/data/security/ssh /home/$username/.ssh
 ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
 ln -fs /mnt/data/tyr /data/tyr
 
-# DEV env pet projects
+# DEV env pet projects.
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
 # Also need to join it to Swarm etc. Basically use TyR deployment scripts at this stage. And not at laptop probably.
 
 if [[ $dotfiles_repo ]]; then
+    # Load dotfiles.
     cd /home/$username
     git clone https://github.com/$dotfiles_repo dotfiles
     mv dotfiles/.git .git
@@ -45,14 +42,24 @@ if [[ $dotfiles_repo ]]; then
     git remote add origin git@github:$dotfiles_repo.git
     rm -R dotfiles
     echo "*" > .gitignore
+
+    # Update work email for git configuration.
     sed -i "s/work@email.com/$git_work_email/" .gitconfig-work
     git update-index --assume-unchanged .gitconfig-work
     mv .git .dotfiles
+
+    # Set crypt password for backup scripts.
     echo "export CRYPT_PASSWORD=$crypt_password" > /root/.secrets
-    chmod 600 /root/.secrets
+    chmod 400 /root/.secrets
+
+    # Apply GRUB configuration from dotfiles.
     cp .etc/default/grub /etc/default/grub
     grub-mkconfig -o /boot/grub/grub.cfg
+
+    # Symlink machine-specific Sway config for my current device.
     ln -fs /home/$username/.config/sway/$hostname /home/$username/.config/sway/machine
+
+    # Make sure everything is owned by the user.
     chown -R $username:$username .
 
     # Enable backups.
