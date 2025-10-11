@@ -52,7 +52,7 @@ if [[ $dotfiles_repo ]]; then
     chmod 600 /root/.secrets
     cp .etc/default/grub /etc/default/grub
     grub-mkconfig -o /boot/grub/grub.cfg
-    ln -s /home/$username/.config/sway/$hostname /home/$username/.config/sway/machine
+    ln -fs /home/$username/.config/sway/$hostname /home/$username/.config/sway/machine
 
     # Headless Dropbox install
     curl -L "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
