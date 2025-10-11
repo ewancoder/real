@@ -25,3 +25,11 @@ At some point during the install, you will be prompted to format & mount the dri
 You will be given a new bash shell session. You can format your drives & mount them, and then type `exit` to exit the interactive shell session.
 
 The installation script will continue executing immediately.
+
+### Running from already running host system (Arch/Debian/anything else)
+
+You can run the script from already running distro (maybe even WSL, though untested).
+
+It uses chroot to prepare "virtual live CD" and use it for the installation.
+
+Other than that, all the steps are the same.
