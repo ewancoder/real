@@ -8,7 +8,7 @@ set -euo pipefail
 source env.sh
 
 clear
-mess -t "$title\nVersion $version"
+mess -t "$title\nVersion $version\nMinor version $subVersion"
 
 if [ ! "$(id -u)" -eq 0 ]; then
     mess -w "You have to be ROOT to run this script. Exiting."

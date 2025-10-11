@@ -4,6 +4,7 @@ step=
 
 title="Ewancoder Arch Linux (EAL) installation script"
 version="3.0: Rad / Rewritten / Refactored / Really-simplified / R-EAL"
+subVersion="3.1: Universalized and refactored"
 
 # Where to place everything.
 # If installing from another host system - should have 2Gb available space.
