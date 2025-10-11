@@ -72,6 +72,7 @@ yay_user_packages=( )
 yay_ask=1 # Ask for confirmation when installing yay packages.
 flatpak=( )
 aur=( )
+personal_scripts=( )
 
 # Color constants.
 Green=$(tput setaf 2)

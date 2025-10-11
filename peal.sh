@@ -172,8 +172,8 @@ chsh -s $shell $username
 # Create swap:
 # 1. If $swap_partition=/dev/sda5, then we'll use /dev/sda5 partition as swap.
 #    This partition should be manually formatted (mkswap) before install script starts.
-# 2. If $swap_file and $swap_file_size are specified, we are creating a new swap file in the filesystem.
-#    For example, $swap_file=/swap, $swap_file_size=20, means create /swap file with the size of 20G.
+# 2. If $swap_file is specified, we are creating a new swap file in the filesystem.
+#    For example, $swap_file=/swap, $swapsize=20, means create /swap file with the size of 20G.
 # 3. If both these variables are empty - we use ZRAM swap on RAM.
 if [[ -n "$swap_partition" ]]; then
     mess "Configuring swap on partition: $swap_partition"
@@ -181,7 +181,7 @@ if [[ -n "$swap_partition" ]]; then
 elif [[ -n "$swap_file" ]]; then
     mess "Configuring swap on file: $swap_file"
     if [[ ! -f "$swap_file" ]]; then
-        fallocate -l "${swap_file_size}G" "$swap_file"
+        fallocate -l "${swapsize}G" "$swap_file"
         chmod 600 "$swap_file"
         mkswap "$swap_file"
     fi

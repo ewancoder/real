@@ -44,14 +44,9 @@ mess -t "Chroot to system"
 mess "Copy {env,config,peal,firstboot}.sh to /mnt/"
 cp {env,config,peal,firstboot}.sh /mnt/
 
-mess "Copy packages folder to /mnt/"
+mess "Copy packages and scripts folders to /mnt/"
 cp -r packages /mnt/
-
-if [ -f custom.sh ]; then
-    # Copy custom.sh only if it exists - user might not have custom scripts.
-    mess "Copy custom.sh to /mnt/"
-    cp custom.sh /mnt/
-fi
+cp -r scripts /mnt/
 
 # Execute main setup script that is executed as root, in your new system (/mnt).
 # All the commands executed in peal.sh are essentially executed in your new system.
@@ -61,8 +56,9 @@ arch-chroot /mnt /peal.sh
 # After peal.sh stops execution - we've set up everything.
 # Clean up the files (remove them) except for firstboot.sh, which we need to execute after reboot.
 mess "Remove files from chroot system"
-rm -f /mnt/{env,config,peal,custom}.sh
+rm -f /mnt/{env,config,peal}.sh
 rm -rf /mnt/packages
+rm -rf /mnt/scripts
 
 # Exic eal.sh and give the control back to the entry point (install.sh).
 mess "Unmount all within /mnt (unmount installed system)"

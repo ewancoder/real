@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This is the main configuration file that you will edit.
-# Also check out custom.sh - you might want to edit (or delete) it too.
-# (NOTE TO SELF): update custom.sh before install
-
 # This script assumes the following:
 # 1. You have WIFI
 # 2. You have Bluetooth
@@ -12,7 +8,32 @@ set -euo pipefail
 #
 # If any of these are not true - you might need to tweak the script itself for your machine, not just this file.
 
-# Build your own desktop.
+# Custom variables for my personal.ewancoder.sh script, can be deleted completely.
+crypt_password="abc"
+git_work_email="work@email.com"
+
+# WiFi settings.
+wifi_ssid="ssid"
+wifi_password="pass"
+wlan_interface=wlan0
+
+# Device-specific settings.
+hostname=ivanpc         # Should be unique per device on the same network.
+root_password="qwerty"  # Leave empty to specify during install.
+user_password="qwerty"  # Leave empty to specify during install.
+ssh_port=58123          # Change this for SSHD deployments.
+windows_efi_volume=""   # Specify if it's different from your linux EFI partition, for GRUB config generation.
+swap_partition=""       # /dev/sdb2 if you want your swap on /dev/sdb2.
+swap_file=""            # /swapfile, if you want your swap in /swapfile file.
+swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
+
+# Other settings (usually don't change).
+timezone=Asia/Tbilisi
+username=ewancoder
+shell=/bin/zsh
+keymap=dvorak # Set to 'us' to have a regular keymap.
+
+# Packages: build your own desktop.
 install=(
     cpu-intel           # CPU drivers.
     gpu-nvidia          # GPU drivers.
@@ -23,38 +44,13 @@ install=(
 )
 loadpackages # Loads the packages into the variable.
 
-# WiFi settings.
-wifi_ssid="ssid"
-wifi_password="pass"
+# These scripts are running in this order at the end of installation.
+personal_scripts=(
+    personal.ewancoder.sh
+)
 
-# Custom variables for my own custom.sh.
-crypt_password="abc"
-git_work_email="work@email.com"
-
-# Swap configuration:
-# For partition:
-    #swap_partition="/dev/sdx8"
-# For file:
-    #swap_file="/swap"
-    #swap_file_size=64 # In GB.
-# For RAM - just leave both of these empty:
-swap_partition="" # If you are using a partition - make sure to format it (with mkswap) manually.
-swap_file=""
-swap_file_size=64
-
-# Common variables
-hostinstall=0
-ssh_port=58123 # Change this for SSHD deployments.
-username=ewancoder
-hostname=ivanpc
-timezone=Asia/Tbilisi
-root_password="qwerty" # Leave empty to specify during install.
-user_password="qwerty" # Leave empty to specify during install.
-windows_efi_volume="" # Only necessary for multiboot, so that GRUB is able to generate proper config. You do not need to specify it if you're installing GRUB & mounting /boot from the same volume as Windows is on.
-wlan_interface=wlan0
-shell=/bin/zsh
-keymap=dvorak # Set to 'us' to have a regular keymap.
-swapsize=20 # Swap size in Gigabytes, will be allocated on RAM.
-
+# Script control optoins.
+auto=1 # Automatically install everything. Put 0 here to manually confirm each step.
+hostinstall=0 # If 1 - install from already running system, otherwise - livecd.
 aur_install=1 # Specify 0 here to skip installing ANY aur packages.
 yay_ask=1 # Ask for confirmation when installing YAY packages.

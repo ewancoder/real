@@ -115,8 +115,9 @@ mkdir -p $install_folder
 mess "Copy env.sh, config.sh"
 cp env.sh config.sh $install_folder
 
-mess "Copy packages folder"
+mess "Copy packages & scripts folders"
 cp -r packages $install_folder/
+cp -r scripts $install_folder/
 
 mess "Prepare eal.sh, make it executable"
 prepare eal.sh $install_folder/eal.sh
@@ -137,6 +138,13 @@ if [ -f custom.sh ]; then
     prepare custom.sh $install_folder/custom.sh
     chmod +x $install_folder/custom.sh
 fi
+
+for script in scripts/*; do
+    filename=$(basename "$script")
+    mess "Prepare $filename, make it executable"
+    prepare "$script" "$install_folder/scripts/$filename"
+    chmod +x "$install_folder/scripts/$filename"
+done
 
 mess "Copy firstboot.sh"
 sed -i "s/firstboot_packages=()/firstboot_packages=( $firstboot_packages )/g" firstboot.sh

@@ -35,9 +35,6 @@ ln -fs /mnt/data/tyr /data/tyr
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
 # Also need to join it to Swarm etc. Basically use TyR deployment scripts at this stage. And not at laptop probably.
 
-# Enable backups.
-echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
-
 if [[ $dotfiles_repo ]]; then
     cd /home/$username
     git clone https://github.com/$dotfiles_repo dotfiles
@@ -63,6 +60,9 @@ if [[ $dotfiles_repo ]]; then
     curl -L "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
     chown -R $username:$username .
+
+    # Enable backups.
+    echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
 
 # Install angular globally
