@@ -150,7 +150,9 @@ if [ $aur_install -eq 1 ] && [ "${#aur[@]}" -gt 0 ]; then
         sudo -u $username yay -S ${aur[@]}
     else
         # ...or without confirmation, completely automatic.
+        echo "$username ALL=(ALL:ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers
         sudo -u $username yay -S --noconfirm ${aur[@]}
+        sed -i '$d' /etc/sudoers # Delete last line - our sudoers entry.
     fi
 else
     mess -w "Skipping installing AUR packages. Make sure you install them manually after system install."
