@@ -147,8 +147,10 @@ for script in scripts/*; do
 done
 
 mess "Copy firstboot.sh"
-sed -i "s/firstboot_packages=()/firstboot_packages=( ${firstboot_packages[@]} )/g" firstboot.sh
-sed -i "s/flatpak=()/flatpak=( ${flatpak[@]} )/g" firstboot.sh
+firstboot_str="${firstboot_packages[*]}"
+sed -i "s/firstboot_packages=()/firstboot_packages=( $firstboot_str )/g" firstboot.sh
+flatpak_str="${flatpak[*]}"
+sed -i "s/flatpak=()/flatpak=( $flatpak_str )/g" firstboot.sh
 sed -i "s/wifi_ssid=''/wifi_ssid='$wifi_ssid'/g" firstboot.sh
 sed -i "s/wifi_password=''/wifi_password='$wifi_password'/g" firstboot.sh
 sed -i "s/username=''/username='$username'/g" firstboot.sh
