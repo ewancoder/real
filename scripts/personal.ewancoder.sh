@@ -50,9 +50,7 @@ if [[ $dotfiles_repo ]]; then
     mv .git .dotfiles
     echo "export CRYPT_PASSWORD=$crypt_password" > /root/.secrets
     chmod 600 /root/.secrets
-    git clone https://github.com/ewancoder/bsol /tmp/bsol
     cp .etc/default/grub /etc/default/grub
-    cp -r /tmp/bsol/bsol /boot/grub/themes/
     grub-mkconfig -o /boot/grub/grub.cfg
     ln -s /home/$username/.config/sway/$hostname /home/$username/.config/sway/machine
 

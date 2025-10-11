@@ -46,6 +46,7 @@ loadpackages # Loads the packages into the variable.
 
 # These scripts are running in this order at the end of installation.
 personal_scripts=(
+    grub-bsod-theme.sh
     personal.ewancoder.sh
 )
 
