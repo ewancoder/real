@@ -4,10 +4,24 @@ This script automates installing Arch Linux, handling errors in the process and 
 
 ## How to run
 
-1. Download all scripts (or clone the repository).
-2. Edit `config.sh`, `firstboot.sh` and `custom.sh`.
+1. Boot up from LiveCD
+2. Download the script:
 
-> `custom.sh` is being run during the installation, from the `root` user; `firstboot.sh` script is copied to the installed system to be run by you manually after rebooting into the system. These two are your custom scripts, erase their content if you don't need them.
+```
+pacman -Syy
+pacman -S --noconfirm git
+git clone https://github.com/ewancoder/real
+cd real
+```
 
-3. Run `./install.sh` under root.
-4. Enjoy :)
+3. Edit `config.sh` file carefully, reviewing each variable.
+  - If needed - create your own packages/scripts in `packages`/`scripts` folders
+4. Run the script from root:
+
+`sudo ./install.sh`
+
+At some point during the install, you will be prompted to format & mount the drivers to /mnt folder. Format and mount them accordingly.
+
+You will be given a new bash shell session. You can format your drives & mount them, and then type `exit` to exit the interactive shell session.
+
+The installation script will continue executing immediately.
