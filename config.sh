@@ -48,6 +48,7 @@ loadpackages # Loads the packages into the variable.
 personal_scripts=(
     personal.ewancoder.sh
     grub-bsod-theme.sh
+    dropbox-sway-install.sh
 )
 
 # Script control options.
