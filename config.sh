@@ -54,3 +54,4 @@ auto=1 # Automatically install everything. Put 0 here to manually confirm each s
 hostinstall=0 # If 1 - install from already running system, otherwise - livecd.
 aur_install=1 # Specify 0 here to skip installing ANY aur packages.
 yay_ask=1 # Ask for confirmation when installing YAY packages.
+install_grub=1

@@ -77,26 +77,30 @@ else
     mess "No packages to install, skipping..."
 fi
 
-# Install GRUB bootloader so we can select an OS during boot.
-mess -t "Install grub"
-# Enable OS prober - tool that scans partitions for other OS (like Windows) to include it in the GRUB boot menu.
-sed -i 's/^#GRUB_DISABLE_OS_PROBER/GRUB_DISABLE_OS_PROBER/' /etc/default/grub
-# Install GRUB into your EFI directory (which should be mounted to /boot).
-grub-install --target=x86_64-efi --efi-directory=/boot
-if [[ ! -z $windows_efi_volume ]]; then
-    # If Windows is running off a separate EFI volume, and we specify it in the config - mount it temporary for os-prober to find it.
-    mess "Mounting windows EFI volume for generating grub config"
-    mkdir -p /mnt/temp
-    mount $windows_efi_volume /mnt/temp
-fi
-# Generate GRUB config: find any OS on your drives and generate the menu.
-mess "Generating grub config"
-grub-mkconfig -o /boot/grub/grub.cfg
-if [[ ! -z $windows_efi_volume ]]; then
-    # Unmount temporary Windows EFI if we mounted it.
-    mess "Unmounting windows EFI volume"
-    umount /mnt/temp
-    rm -r /mnt/temp
+if [ $install_grub -eq 1 ]; then
+    # Install GRUB bootloader so we can select an OS during boot.
+    mess -t "Install grub"
+    # Enable OS prober - tool that scans partitions for other OS (like Windows) to include it in the GRUB boot menu.
+    sed -i 's/^#GRUB_DISABLE_OS_PROBER/GRUB_DISABLE_OS_PROBER/' /etc/default/grub
+    # Install GRUB into your EFI directory (which should be mounted to /boot).
+    grub-install --target=x86_64-efi --efi-directory=/boot
+    if [[ ! -z $windows_efi_volume ]]; then
+        # If Windows is running off a separate EFI volume, and we specify it in the config - mount it temporary for os-prober to find it.
+        mess "Mounting windows EFI volume for generating grub config"
+        mkdir -p /mnt/temp
+        mount $windows_efi_volume /mnt/temp
+    fi
+    # Generate GRUB config: find any OS on your drives and generate the menu.
+    mess "Generating grub config"
+    grub-mkconfig -o /boot/grub/grub.cfg
+    if [[ ! -z $windows_efi_volume ]]; then
+        # Unmount temporary Windows EFI if we mounted it.
+        mess "Unmounting windows EFI volume"
+        umount /mnt/temp
+        rm -r /mnt/temp
+    fi
+else
+    mess "Skipping installing grub, make sure to update the configuration manually."
 fi
 
 # During AUR installation, or any other manual package installation - makepkg tool compiles source code for you.
