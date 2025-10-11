@@ -8,6 +8,7 @@ flatpak=()
 wifi_ssid=''
 wifi_password=''
 username=''
+install_platpak=1
 
 # Link resolv.conf for internet DNS to work.
 ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
@@ -24,7 +25,7 @@ if [ ${#firstboot_packages[@]} -gt 0 ]; then
     pacman -S $firstboot_packages --noconfirm
 fi
 
-if [ "${#flatpak[@]}" -gt 0 ]; then
+if [ "${#flatpak[@]}" -gt 0 ] && [ $install_flatpak -eq 1 ]; then
     echo "Installing flatpak packages"
     # If flatpak packages exist in config - install them.
     # This will only work if flatpak itself was installed in the system.
@@ -32,6 +33,8 @@ if [ "${#flatpak[@]}" -gt 0 ]; then
     echo "Install Flatpak packages"
     sudo pacman -S --noconfirm flatpak
     sudo flatpak install ${flatpak[@]} --noninteractive --system
+else
+    echo "Skip installing Flatpak packages."
 fi
 
 # Change autologin for the user instead of the root.

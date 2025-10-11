@@ -56,3 +56,4 @@ aur_install=1 # Specify 0 here to skip installing ANY aur packages.
 yay_ask=1 # Ask for confirmation when installing YAY packages.
 install_grub=1
 install_folder=/eal-temp # /tmp/eal means it's in RAM.
+install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.
