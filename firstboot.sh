@@ -8,7 +8,7 @@ flatpak=()
 wifi_ssid=''
 wifi_password=''
 username=''
-install_platpak=1
+install_flatpak=1
 
 # Link resolv.conf for internet DNS to work.
 ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
