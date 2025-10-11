@@ -59,6 +59,9 @@ if [[ $dotfiles_repo ]]; then
     # Symlink machine-specific Sway config for my current device.
     ln -fs /home/$username/.config/sway/$hostname /home/$username/.config/sway/machine
 
+    # Symlink machine-specific jellyfin-mpv-shim config.
+    ln -fs /home/$username/.config/jellyfin-mpv-shim/config.$hostname.conf /home/$username/.config/jellyfin-mpv-shim/config.conf
+
     # Make sure everything is owned by the user.
     chown -R $username:$username .
 
