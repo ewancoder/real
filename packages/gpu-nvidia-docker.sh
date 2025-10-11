@@ -3,6 +3,6 @@ set -euo pipefail
 
 # Nvidia utils for Docker integration.
 
-firstboot_packages+=(
+packages+=(
     nvidia-container-toolkit # Needed to pass GPU to our Jellyfin container.
 )
