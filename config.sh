@@ -49,6 +49,7 @@ personal_scripts=(
     personal.ewancoder.sh
     grub-bsod-theme.sh
     dropbox-sway-install.sh
+    #asus-scar-g17-firmware.sh
 )
 
 # Script control options.
