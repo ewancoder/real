@@ -257,6 +257,6 @@ fi
 
 # Setup autologin for root for the firstboot script to be executed automatically after reboot.
 mkdir -p /etc/systemd/system/getty@tty1.service.d
-echo -e "[Service]\nExecStart=\nExecStart=-/sbin/agetty -o '-p -f -- \\\\\\\\u' --noclear --autologin root %I \$TERM\n" > autologin-test
+echo -e "[Service]\nExecStart=\nExecStart=-/sbin/agetty -o '-p -f -- \\\\\\\\u' --noclear --autologin root %I \$TERM\n" > /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
 echo '/firstboot.sh' > /root/.bash_profile

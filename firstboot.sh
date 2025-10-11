@@ -29,7 +29,7 @@ if [ "${#flatpak[@]}" -gt 0 ]; then
     # If flatpak packages exist in config - install them.
     # This will only work if flatpak itself was installed in the system.
     # (one of the packages in config should be flatpak)
-    mess "Install Flatpak packages"
+    echo "Install Flatpak packages"
     sudo pacman -S --noconfirm flatpak
     sudo flatpak install ${flatpak[@]} --noninteractive --system
 fi
