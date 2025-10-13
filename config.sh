@@ -41,6 +41,7 @@ install=(
     core-system         # Core Arch system.
     sway                # Core Sway UI environment.
     ewancoder           # Personal packages shared across devices.
+    #ewancoder-laptop   # Additional tools for laptop.
 )
 loadpackages # Loads the packages into the variable.
 
