@@ -142,19 +142,21 @@ else
     fi
 fi
 
-if [ $aur_install -eq 1 ] && [ "${#aur[@]}" -gt 0 ]; then
-    # If we have any AUR packages in the config - install them using YAY...
-    mess "Install AUR user packages"
-    if [ $yay_ask -eq 1 ]; then
-        # ...with confirmation required if $yay_ask is 1.
-        sudo -u $username yay -S ${aur[@]}
-    else
-        # ...or without confirmation, completely automatic.
-        echo "$username ALL=(ALL:ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers
-        sudo -u $username yay -S --noconfirm ${aur[@]}
-        # Hacky way to remove last line without breaking our script ($d breaks it).
-        head -n -1 /etc/sudoers > temp && mv temp /etc/sudoers
-        chmod 440 /etc/sudoers
+if [ $aur_install -eq 1 ]; then
+    if [ "${#aur[@]}" -gt 0 ]; then
+        # If we have any AUR packages in the config - install them using YAY...
+        mess "Install AUR user packages"
+        if [ $yay_ask -eq 1 ]; then
+            # ...with confirmation required if $yay_ask is 1.
+            sudo -u $username yay -S ${aur[@]}
+        else
+            # ...or without confirmation, completely automatic.
+            echo "$username ALL=(ALL:ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers
+            sudo -u $username yay -S --noconfirm ${aur[@]}
+            # Hacky way to remove last line without breaking our script ($d breaks it).
+            head -n -1 /etc/sudoers > temp && mv temp /etc/sudoers
+            chmod 440 /etc/sudoers
+        fi
     fi
 else
     mess -w "Skipping installing AUR packages. Make sure you install them manually after system install."
