@@ -2,8 +2,9 @@
 set -euo pipefail
 
 # TODO:
-# 2. pacman cleanup at the end fails for some reason due to a dash -
-# 3. if aur already installed - skip installing it
+# 1. pacman cleanup at the end fails for some reason due to a dash -
+# 2. if aur already installed - skip installing it
+# 3. some mess(ages) have wrong title - multiple steps grouped incorrectly, recheck this
 
 source env.sh
 
@@ -17,6 +18,17 @@ fi
 
 mess -w "Before proceeding:\n\t1) Edit 'config.sh' configuration file\n\t2) Format your partitions (including swap if needed) & mount them to /mnt as required.\n\nOnly continue after you've done this, or press Ctrl+C to cancel script execution."
 source config.sh
+
+if [[ ! " ${packages[*]} " =~ " zsh " ]] && [[ $shell == "/bin/zsh" ]]; then
+    mess -w "You do not have 'zsh' package in your packages, but you set it as your desired shell. Please make sure you either install it, or change the shell."
+    exit 0
+fi
+if [[ ! " ${packages[*]} " =~ " fish " ]] && [[ $shell == "/bin/fish" ]]; then
+    mess -w "You do not have 'fish' package in your packages, but you set it as your desired shell. Please make sure you either install it, or change the shell."
+    exit 0
+fi
+
+exit
 
 prepare() {
     echo "source ./env.sh" > "$2"
