@@ -32,6 +32,9 @@ sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
 sed -i "s/^#\?PasswordAuthentication .*/PasswordAuthentication no/" /etc/ssh/sshd_config
 sed -i "s/^#\?PermitRootLogin .*/PermitRootLogin no/" /etc/ssh/sshd_config
 
+# Add current user to docker group for sudo-less docker access.
+usermod -aG docker $username
+
 # DEV env pet projects.
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
 # Also need to join it to Swarm etc. Basically use TyR deployment scripts at this stage. And not at laptop probably.

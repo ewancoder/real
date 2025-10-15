@@ -238,9 +238,6 @@ sleep 10
 mess "Synchronize hardware clock"
 hwclock --systohc
 
-# Add current user to docker group for sudo-less docker access.
-usermod -aG docker $username
-
 # Enable all the systemd services that are specified in the config.
 if [ ${#services} -gt 0 ]; then
     mess -t "Enable services"
