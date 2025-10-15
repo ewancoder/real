@@ -253,9 +253,9 @@ if [ ${#services} -gt 0 ]; then
     done
 fi
 
-for script in scripts/*; do
+for script in "${personal_scripts[@]}"; do
     mess -t "Execute personal script: $script"
-    $script
+    /scripts/$script
 done
 
 # Setup autologin for root for the firstboot script to be executed automatically after reboot.
