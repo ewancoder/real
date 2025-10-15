@@ -8,9 +8,10 @@ set -euo pipefail
 #
 # If any of these are not true - you might need to tweak the script itself for your machine, not just this file.
 
-# Custom variables for my personal.ewancoder.sh script, can be deleted completely.
+# Custom variables for my personal.ewancoder.sh script, can be deleted completely, or ignore them.
 crypt_password="pass"
 git_work_email="work@email.com"
+ssh_port=50000
 
 # WiFi settings.
 wifi_ssid="ssid"
@@ -21,7 +22,6 @@ wlan_interface=wlan0
 hostname=archpc         # Should be unique per device on the same network.
 root_password="pass"    # Leave empty to specify during install.
 user_password="pass"    # Leave empty to specify during install.
-ssh_port=50000          # Change this for SSHD deployments.
 windows_efi_volume=""   # Specify if it's different from your linux EFI partition, for GRUB config generation.
 swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
 swap_partition=""       # /dev/sdb2 if you want your swap on /dev/sdb2.

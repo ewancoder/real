@@ -27,6 +27,11 @@ ln -fs /mnt/data/security/ssh /home/$username/.ssh
 ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
 ln -fs /mnt/data/tyr /data/tyr
 
+# Change default SSH port, disable Password auth and Root login.
+sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
+sed -i "s/^#\?PasswordAuthentication .*/PasswordAuthentication no/" /etc/ssh/sshd_config
+sed -i "s/^#\?PermitRootLogin .*/PermitRootLogin no/" /etc/ssh/sshd_config
+
 # DEV env pet projects.
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
 # Also need to join it to Swarm etc. Basically use TyR deployment scripts at this stage. And not at laptop probably.

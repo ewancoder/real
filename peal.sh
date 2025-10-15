@@ -238,11 +238,6 @@ sleep 10
 mess "Synchronize hardware clock"
 hwclock --systohc
 
-# Change default SSH port, disable Password auth and Root login.
-sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
-sed -i "s/^#\?PasswordAuthentication .*/PasswordAuthentication no/" /etc/ssh/sshd_config
-sed -i "s/^#\?PermitRootLogin .*/PermitRootLogin no/" /etc/ssh/sshd_config
-
 # Add current user to docker group for sudo-less docker access.
 usermod -aG docker $username
 
