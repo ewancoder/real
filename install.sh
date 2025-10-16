@@ -3,8 +3,7 @@ set -euo pipefail
 
 # TODO:
 # 1. pacman cleanup at the end fails for some reason due to a dash -
-# 2. if aur already installed - skip installing it
-# 3. some mess(ages) have wrong title - multiple steps grouped incorrectly, recheck this
+# 2. some mess(ages) have wrong title - multiple steps grouped incorrectly, recheck this
 
 source env.sh
 
