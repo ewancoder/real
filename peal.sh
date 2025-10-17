@@ -31,13 +31,14 @@ mess -t "Setup hostname & timezone"
 mess "Set hostname - $hostname"
 echo "$hostname" > /etc/hostname
 
+mess -t "Setup locales & timezones"
 # Set up local timezone for your machine. Clock & other geo-services will use it to properly show time.
 mess "Set local timezone ($timezone)"
 ln -fs /usr/share/zoneinfo/$timezone /etc/localtime
 
 # Generate locales that the system should support.
 # For example, having both en-US and ru-RU locales will allow you switching the whole system from English to Russian and vise-versa.
-mess -t "Uncomment locales"
+mess "Uncomment locales"
 for i in "${locale[@]}"; do
     mess "Add locale $i"
     sed -i "s/^#$i/$i/g" /etc/locale.gen
@@ -114,16 +115,17 @@ fi
 # During AUR installation, or any other manual package installation - makepkg tool compiles source code for you.
 # By default it uses only 1 CPU core which is slow and inefficient.
 # Here we are making sure it uses ALL available cores.
-mess "Configure MAKEPKG to use all your cores, not just one"
+mess -t "Configure MAKEPKG to use all your cores, not just one"
 sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$(nproc)\"/" /etc/makepkg.conf
 
 # Add your user to sudoers so it can run sudo.
-mess "Add user to sudoers file, and tweak pacman access for yay installation"
+mess -t "Add user to sudoers file, and tweak pacman access for yay installation"
 echo "$username ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # Add pacman to exceptions so we can run it without password.
 # TODO: this is obsolete and insecure so better remove this, I am using 'run0' now anyway.
 #echo "$username ALL=(ALL:ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers
 
+mess -t "Setting up AUR helpers & installing packages"
 if which yay > /dev/null; then
     mess "Yay already installed, skipping installation"
 else
@@ -165,7 +167,7 @@ fi
 # Configure power button to not do anything (ignore).
 # Only listen to it on a long press.
 # Also disable sleep for laptops (lid and button events) cause most likely sleep doesn't work correctly.
-mess "Make sure PC doesn't die when pressing power button once"
+mess -t "Make sure PC doesn't die when pressing power button once"
 sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
 sed -i 's/^#HandlePowerKeyLongPress=ignore/HandlePowerKeyLongPress=poweroff/' /etc/systemd/logind.conf
 sed -i 's/^#HandleRebootKey=reboot/HandleRebootKey=ignore/' /etc/systemd/logind.conf
@@ -175,7 +177,7 @@ sed -i 's/^#HandleLidSwitch=suspend/HandleLidSwitch=ignore/' /etc/systemd/logind
 sed -i 's/^#HandleLidSwitchExternalPower=suspend/HandleLidSwitchExternalPower=ignore/' /etc/systemd/logind.conf
 
 # Set current/default shell from config.
-mess "Changing default shell"
+mess -t "Change default shell"
 chsh -s $shell $username
 
 # TODO: Implement a choice: no swap, swap on RAM, or swap on FILE/partition.
@@ -185,6 +187,7 @@ chsh -s $shell $username
 # 2. If $swap_file is specified, we are creating a new swap file in the filesystem.
 #    For example, $swap_file=/swap, $swapsize=20, means create /swap file with the size of 20G.
 # 3. If both these variables are empty - we use ZRAM swap on RAM.
+mess -t "Configure swap"
 if [[ -n "$swap_partition" ]]; then
     mess "Configuring swap on partition: $swap_partition"
     echo "$swap_partition none swap defaults 0 0" >> /etc/fstab
@@ -203,14 +206,14 @@ else
     echo '/dev/zram0 none swap defaults,discard,pri=100 0 0' >> /etc/fstab
 fi
 
-mess "Removing unused / orphan packages, cleaning up"
+mess -t "Removing unused / orphan packages, cleaning up"
 pacman -Rns `pacman -Qdtq` --noconfirm || true
 
 # TODO: Implement an option of ethernet, or both.
 #   IF using Ethernet - make sure to also tweak wait-online.target below.
 # We are using bare-bones iwd/iwctl for connecting to wifi,
 # and systemd-resolved for resolving DNS.
-mess "Set up wifi"
+mess -t "Set up wifi"
 # Add configuration for iwd:
 # EnableNetworkConfiguration - use iwd for dhcp/dns, instead of relying on NetworkManager (we have it disabled).
 # NameResolvingService - use systemd-resolved backend for resolving systemd.
@@ -226,6 +229,7 @@ systemctl enable iwd systemd-resolved
 mkdir -p /etc/systemd/system/systemd-networkd-wait-online.service.d
 echo -e "[Service]\nExecStart=\nExecStart=/usr/lib/systemd/systemd-networkd-wait-online --interface=$wlan_interface" > /etc/systemd/system/systemd-networkd-wait-online.service.d/override.conf
 
+mess -t "Set up time synchronization"
 # Set up NTP.
 # This is time synchronization service. We use hardcoded google server.
 sed -i 's/#NTP=/NTP=time.google.com/g' /etc/systemd/timesyncd.conf
@@ -252,8 +256,8 @@ for script in "${personal_scripts[@]}"; do
     /scripts/$script
 done
 
+mess -t "Set up firstboot.sh script for installation continuation"
 # Setup autologin for root for the firstboot script to be executed automatically after reboot.
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 echo -e "[Service]\nExecStart=\nExecStart=-/sbin/agetty -o '-p -f -- \\\\\\\\u' --noclear --autologin root %I \$TERM\n" > /etc/systemd/system/getty@tty1.service.d/autologin.conf
-
 echo '/firstboot.sh' > /root/.bash_profile

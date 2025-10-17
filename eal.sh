@@ -55,6 +55,7 @@ arch-chroot /mnt /peal.sh
 
 # After peal.sh stops execution - we've set up everything.
 # Clean up the files (remove them) except for firstboot.sh, which we need to execute after reboot.
+mess -t "Remove files from chroot & unmount everything"
 mess "Remove files from chroot system"
 rm -f /mnt/{env,config,peal}.sh
 rm -rf /mnt/packages

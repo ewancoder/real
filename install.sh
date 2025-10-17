@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO:
-# 1. pacman cleanup at the end fails for some reason due to a dash -
-# 2. some mess(ages) have wrong title - multiple steps grouped incorrectly, recheck this
+# TODO: pacman cleanup at the end fails for some reason due to a dash -
 
 source env.sh
 
