@@ -25,8 +25,6 @@ if [[ ! " ${packages[*]} " =~ " fish " ]] && [[ $shell == "/bin/fish" ]]; then
     exit 0
 fi
 
-exit
-
 prepare() {
     echo "source ./env.sh" > "$2"
     echo "source ./config.sh" >> "$2"
