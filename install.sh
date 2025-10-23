@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# TODO: Check EFI, if MBR - ask for reboot & start from scratch.
+# TODO: Make a pause in firstboot after starting scanning and before connecting.
+
 # TODO: pacman cleanup at the end fails for some reason due to a dash -
 
 source env.sh
