@@ -14,9 +14,11 @@ install_flatpak=1
 ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 # Connect to wifi and remember the network.
+echo "Connecting to the internet... (10s)"
+iwctl --passphrase "$wifi_password" station wlan0 scan on
+sleep 5
 iwctl --passphrase "$wifi_password" station wlan0 connect "$wifi_ssid"
-echo "Waiting for internet connection for 10 seconds..."
-sleep 10
+sleep 5
 
 # Install after-reboot packages.
 if [ ${#firstboot_packages[@]} -gt 0 ]; then
