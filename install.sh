@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO: Check EFI, if MBR - ask for reboot & start from scratch.
 # TODO: Make a pause in firstboot after starting scanning and before connecting.
 
 # TODO: pacman cleanup at the end fails for some reason due to a dash -
@@ -10,6 +9,12 @@ source env.sh
 
 clear
 mess -t "$title\nVersion $version\nMinor version $subVersion"
+
+if [ ! -d /sys/firmware/efi ]; then
+    echo "You are loaded in MBR mode, you need to load in UEFI mode to install the system on a GPT disk."
+    echo "At this point of time, this script only supports UEFI mode. Please reboot livecd/system in UEFI mode."
+    exit
+fi
 
 if [ ! "$(id -u)" -eq 0 ]; then
     mess -w "You have to be ROOT to run this script. Exiting."
