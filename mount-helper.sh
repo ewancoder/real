@@ -22,3 +22,7 @@ mount $data_volume /mnt/mnt/data
 mount $backup_volume /mnt/mnt/backup
 mount $hdd_volume /mnt/mnt/hdd
 
+# TODO:
+# change fmask=x,dmask=x, into umask=0077,uid=0,gid=0 to only allow root access to /boot.
+# Or mount it ahead of time with these permissions: mount -o umask=0077,uid=0,gid=0 /devx /mnt/boot
+
