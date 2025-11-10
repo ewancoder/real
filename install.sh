@@ -181,6 +181,11 @@ fi
 #mess -p "Remove the temporary folder. This is the last step, feel free to Ctrl+C if you want to keep it"
 rm -rf $install_folder
 
+if [ $hostinstall -eq 1 ]; then
+    mess -t "Your system is installed!"
+    exit
+fi
+
 mess -t "Your system will reboot in 10 seconds to continue the installation... Press Ctrl+C if you want to avoid this."
 sleep 10
 reboot
