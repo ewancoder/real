@@ -34,6 +34,8 @@ ln -fs /mnt/data/security/ssh /home/$username/.ssh
 ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
 ln -fs /mnt/data/tyr /data/tyr
 ln -fs /mnt/data/security/sbctl /var/lib/sbctl
+ln -fs /mnt/media/tyrm/media /mnt/data/tyrm/media
+ln -fs /mnt/media/tyrm/downloads /mnt/data/tyrm/downloads
 
 # Change default SSH port, disable Password auth and Root login.
 sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
