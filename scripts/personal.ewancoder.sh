@@ -15,6 +15,11 @@ mkdir -p /mnt/data/Dropbox
 mkdir -p /mnt/data/security/{ssh,gnupg}
 mkdir -p /mnt/data/tyr
 mkdir -p /data
+mkdir -p /mnt/data/tyrm/{downloads,configs,media}
+mkdir -p /mnt/media/tyrm/{downloads,media}
+chown $username:$username /mnt/media/tyrm
+chown $username:$username /mnt/media/tyrm/downloads
+chown $username:$username /mnt/media/tyrm/media
 chown $username:$username /mnt/data/home
 chown $username:$username /mnt/data/home/{projects,.var}
 chown $username:$username /mnt/nda/work
