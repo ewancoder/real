@@ -9,23 +9,26 @@ dotfiles_repo="ewancoder/dotfiles"
 echo "104.21.32.39 rutracker.org" > /etc/hosts
 
 # Restore symlinks to mnt.
-mkdir -p /mnt/data/home/{projects,work,.zen}
+mkdir -p /mnt/data/home/{projects,.var}
+mkdir -p /mnt/nda/work
 mkdir -p /mnt/data/Dropbox
 mkdir -p /mnt/data/security/{ssh,gnupg}
 mkdir -p /mnt/data/tyr
 mkdir -p /data
 chown $username:$username /mnt/data/home
-chown $username:$username /mnt/data/home/{projects,work,.zen}
+chown $username:$username /mnt/data/home/{projects,.var}
+chown $username:$username /mnt/nda/work
 chown $username:$username /mnt/data/Dropbox
 chown $username:$username /mnt/data/security/{ssh,gnupg}
 chown 2000:2000 /mnt/data/tyr
 ln -fs /mnt/data/home/projects /home/$username/projects
-ln -fs /mnt/data/home/work /home/$username/work
-ln -fs /mnt/data/home/.zen /home/$username/.zen
+ln -fs /mnt/data/home/.var /home/$username/.var
+ln -fs /mnt/nda/work /home/$username/work
 ln -fs /mnt/data/Dropbox /home/$username/Dropbox
 ln -fs /mnt/data/security/ssh /home/$username/.ssh
 ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
 ln -fs /mnt/data/tyr /data/tyr
+ln -fs /mnt/data/security/sbctl /var/lib/sbctl
 
 # Change default SSH port, disable Password auth and Root login.
 sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
@@ -62,7 +65,7 @@ if [[ $dotfiles_repo ]]; then
 
     # Apply GRUB configuration from dotfiles.
     cp .etc/default/grub /etc/default/grub
-    grub-mkconfig -o /boot/grub/grub.cfg
+    grub-mkconfig -o /boot/grub/grub.cfg || true
 
     # Symlink machine-specific Sway config for my current device.
     ln -fs /home/$username/.config/sway/$hostname /home/$username/.config/sway/machine
