@@ -78,6 +78,22 @@ pacman -Syy
 mess "Remove CPU ucodes if exists, to prevent conflicts"
 rm -f /boot/intel-ucode.img /boot/amd-ucode.img
 
+if [ $uki -eq 1 ]; then
+    # Set up UKI.
+    mess -t "Set up UKI"
+    sed -i 's/default_image/#default_image/g' /etc/mkinitcpio.d/linux.preset
+    sed -i 's/#default_uki/default_uki/g' /etc/mkinitcpio.d/linux.preset
+    echo "$uki_cmdline" > /etc/kernel/cmdline
+fi
+
+if [ $encrypted_root -eq 1 ]; then
+    mess -t "Set up encrcypted root support"
+    sed -i 's/filesystems fsck/sd-encrypt filesystems fsck/g' /etc/mkinitcpio.conf
+    mess -w "Please edit /etc/crypttab manually to make sure all additional volumes (except root) are set up, and then exit (exit) this bash session"
+    bash
+    # TODO: Generate /etc/crypttab automatically or based on config.
+fi
+
 # Install all the packages from $special_packages, $essential_packages, and $user_packages from config.
 mess -t "Install packages"
 if [ ${#packages[@]} -gt 0 ]; then
@@ -110,6 +126,15 @@ if [ $install_grub -eq 1 ]; then
     fi
 else
     mess "Skipping installing grub, make sure to update the configuration manually."
+fi
+
+if [ $install_systemdboot -eq 1 ]; then
+    # Install systemd-boot bootloader so we can select an OS during boot.
+    mess -t "Install systemd-boot"
+    # Install systemd-boot into your mounted EFI directory
+    bootctl install
+else
+    mess "Skipping installing systemd-boot, make sure to update the configuration manually."
 fi
 
 # During AUR installation, or any other manual package installation - makepkg tool compiles source code for you.
@@ -261,3 +286,11 @@ mess -t "Set up firstboot.sh script for installation continuation"
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 echo -e "[Service]\nExecStart=\nExecStart=-/sbin/agetty -o '-p -f -- \\\\\\\\u' --noclear --autologin root %I \$TERM\n" > /etc/systemd/system/getty@tty1.service.d/autologin.conf
 echo '/firstboot.sh' > /root/.bash_profile
+
+mess -t "Rebuild kernel in case we need to"
+mkinitcpio -P
+
+if [ $secure_boot -eq 1 ]; then
+mess -w "Secure boot is used. Please make sure bootloader and kernel are signed, then exit the bash session."
+bash
+# TODO: Automate this.

@@ -48,7 +48,7 @@ loadpackages # Loads the packages into the variable.
 # These scripts are running in this order at the end of installation.
 personal_scripts=(
     personal.ewancoder.sh
-    grub-bsod-theme.sh
+    #grub-bsod-theme.sh
     dropbox-sway-install.sh
     #asus-scar-g17-firmware.sh
 )
@@ -58,6 +58,11 @@ auto=1 # Automatically install everything. Put 0 here to manually confirm each s
 hostinstall=0 # If 1 - install from already running system, otherwise - livecd.
 aur_install=1 # Specify 0 here to skip installing ANY aur packages.
 yay_ask=0 # Ask for confirmation when installing YAY packages.
-install_grub=1
+install_grub=0
+install_systemdboot=1
+encrypted_root=1
+secure_boot=1
+uki=1
+uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 install_folder=/eal-temp # /tmp/eal means it's in RAM.
 install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.

@@ -19,7 +19,7 @@ if [ ! "$(id -u)" -eq 0 ]; then
     exit
 fi
 
-mess -w "Before proceeding:\n\t1) Edit 'config.sh' configuration file\n\t2) Format your partitions (including swap if needed) & mount them to /mnt as required.\n\nOnly continue after you've done this, or press Ctrl+C to cancel script execution."
+mess -w "Before proceeding:\n\t1) Edit 'config.sh' configuration file\n\t2) Format your partitions (including swap if needed) & mount them to /mnt as required.\n\nOnly continue after you've done this, or press Ctrl+C to cancel script execution. If you are using UKI - EFI directory should be mounted to /efi (/mnt/efi)."
 source config.sh
 
 if [[ ! " ${packages[*]} " =~ " zsh " ]] && [[ $shell == "/bin/zsh" ]]; then
