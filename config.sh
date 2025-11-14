@@ -39,6 +39,7 @@ install=(
     gpu-nvidia          # GPU drivers.
     gpu-nvidia-docker   # GPU drivers support.
     core-system         # Core Arch system.
+    security
     sway                # Core Sway UI environment.
     ewancoder           # Personal packages shared across devices.
     #ewancoder-laptop   # Additional tools for laptop.
@@ -51,6 +52,7 @@ personal_scripts=(
     #grub-bsod-theme.sh
     dropbox-sway-install.sh
     #asus-scar-g17-firmware.sh
+    security.sh
 )
 
 # Script control options.
