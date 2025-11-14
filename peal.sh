@@ -87,10 +87,10 @@ if [ $uki -eq 1 ]; then
 fi
 
 if [ $encrypted_root -eq 1 ]; then
-    mess -t "Set up encrcypted root support"
+    mess -t "Set up encrypted root support"
     sed -i 's/filesystems fsck/sd-encrypt filesystems fsck/g' /etc/mkinitcpio.conf
     mess -w "Please edit /etc/crypttab manually to make sure all additional volumes (except root) are set up, and then exit (exit) this bash session"
-    bash
+    #bash
     # TODO: Generate /etc/crypttab automatically or based on config.
 fi
 
@@ -292,5 +292,5 @@ mkinitcpio -P
 
 if [ $secure_boot -eq 1 ]; then
 mess -w "Secure boot is used. Please make sure bootloader and kernel are signed, then exit the bash session."
-bash
+#bash
 # TODO: Automate this.
