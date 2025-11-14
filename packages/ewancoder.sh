@@ -28,6 +28,7 @@ packages+=(
     net-tools       # For ifconfig for script that shows status of downloads/uploads.
     openssh         # Used to connect to SSH servers & generate ssh-keygen.
     ranger          # VI-like file manager.
+    sbctl           # For signing EFIs for SecureBoot.
     tmux            # Terminal multiplexer.
     wireguard-tools # For connecting home PC to DO docker Swarm.
     wlsunset        # Control backlight color (warmer at night)
