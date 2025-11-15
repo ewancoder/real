@@ -293,7 +293,8 @@ mkinitcpio -P
 
 if [ $secure_boot -eq 1 ]; then
   mess -w "Secure boot is used. Please make sure bootloader and kernel are signed, then exit the bash session."
-  mess -w "Also enable UFW on first boot if you have it installed."
 fi
+
+mess -w "Enable UFW on first boot if you have it installed."
 #bash
 # TODO: Automate this.
