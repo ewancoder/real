@@ -290,12 +290,12 @@ mess -t "Rebuild kernel in case we need to"
 mkinitcpio -P
 
 if [ $encrypted_root -eq 1 ]; then
-    mess -w "Please edit /etc/crypttab manually to make sure all additional volumes (except root) are set up, and then exit (exit) this bash session"
+    mess -w "Please edit /etc/crypttab manually to make sure all additional volumes (except root) are set up"
 fi
 
 if [ $secure_boot -eq 1 ]; then
     # TODO: Automate this.
-    mess -w "Secure boot is used. Please make sure bootloader and kernel are signed, then exit the bash session."
+    mess -w "Secure boot is used. Please make sure bootloader and kernel are signed"
 fi
 
 # TODO: Automate this.
