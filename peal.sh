@@ -133,6 +133,7 @@ if [ $install_systemdboot -eq 1 ]; then
     mess -t "Install systemd-boot"
     # Install systemd-boot into your mounted EFI directory
     bootctl install
+    sed -i 's/#timeout/timeout/g' /efi/loader/loader.conf
 else
     mess "Skipping installing systemd-boot, make sure to update the configuration manually."
 fi
