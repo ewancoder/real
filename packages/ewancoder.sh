@@ -72,7 +72,7 @@ flatpak+=(
     com.slack.Slack
     net.ankiweb.Anki
     app.zen_browser.zen
-    com.jetbrains.Rider
+    #com.jetbrains.Rider
 )
 
 aur+=(
