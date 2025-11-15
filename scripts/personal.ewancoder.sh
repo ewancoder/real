@@ -33,6 +33,7 @@ ln -fs /mnt/data/Dropbox /home/$username/Dropbox
 ln -fs /mnt/data/security/ssh /home/$username/.ssh
 ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
 ln -fs /mnt/data/tyr /data/tyr
+mv /var/lib/sbctl /var/lib/sbctl_backup
 ln -fs /mnt/data/security/sbctl /var/lib/sbctl
 ln -fs /mnt/media/tyrm/media /mnt/data/tyrm/media
 ln -fs /mnt/media/tyrm/downloads /mnt/data/tyrm/downloads
