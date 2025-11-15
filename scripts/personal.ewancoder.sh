@@ -2,6 +2,7 @@
 set -euo pipefail
 
 # This is my (ewancoder) custom script that runs at the end of system installation.
+# TODO: do not create symlinks within symlinks (like Dropbox/Dropbox, or projects/projects)
 
 dotfiles_repo="ewancoder/dotfiles"
 
