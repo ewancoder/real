@@ -20,6 +20,9 @@ sleep 5
 iwctl --passphrase "$wifi_password" station wlan0 connect "$wifi_ssid"
 sleep 5
 
+# Enable UFW
+if which ifw > /dev/null; then ufw enable; fi
+
 # Install after-reboot packages.
 if [ ${#firstboot_packages[@]} -gt 0 ]; then
     echo "Installing packages"
