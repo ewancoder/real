@@ -89,8 +89,34 @@ fi
 if [ $encrypted_root -eq 1 ]; then
     mess -t "Set up encrypted root support"
     sed -i 's/filesystems fsck/sd-encrypt filesystems fsck/g' /etc/mkinitcpio.conf
-    # TODO: Generate /etc/crypttab automatically or based on config.
+
+    # TODO: Properly fix $() usage and use it instead of legacy ``.
+    # For now this is very hacky.
+    mess -t "Edit crypttab if needed"
+    rootmapper=`findmnt -no SOURCE / `
+    rootmapperbase=`basename $rootmapper `
+    rootdev=`cryptsetup status $rootmapperbase 2>/dev/null | awk -F': ' '/device:/ { print $2 }' | xargs `
+    rootdev=${rootdev:-$rootmapper}
+
+    for name in /dev/mapper/*; do
+        if [[ "$name" == "/dev/mapper/control" ]]; then
+            continue
+        fi
+        mapper_name=`basename "$name" `
+
+        backing=`cryptsetup status "$mapper_name" 2>/dev/null | awk -F': ' '/device:/ {print $2}' | xargs `
+        if [[ -z "$backing" ]]; then
+            continue
+        fi
+        if [[ "$(readlink -f "$backing")" == "$rootdev" ]]; then
+            continue
+        fi
+
+        uuid=`blkid -s UUID -o value "$backing"`
+        echo "$mapper_name UUID=$uuid none luks" >> /etc/crypttab
+    done
 fi
+
 
 # Install all the packages from $special_packages, $essential_packages, and $user_packages from config.
 mess -t "Install packages"
@@ -288,10 +314,6 @@ echo '/firstboot.sh' > /root/.bash_profile
 
 mess -t "Rebuild kernel in case we need to"
 mkinitcpio -P
-
-if [ $encrypted_root -eq 1 ]; then
-    mess -w "Please edit /etc/crypttab manually to make sure all additional volumes (except root) are set up"
-fi
 
 if [ $secure_boot -eq 1 ]; then
     # TODO: Automate this.
