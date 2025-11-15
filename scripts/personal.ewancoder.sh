@@ -27,17 +27,17 @@ chown $username:$username /mnt/nda/work
 chown $username:$username /mnt/data/Dropbox
 chown $username:$username /mnt/data/security/{ssh,gnupg}
 chown 2000:2000 /mnt/data/tyr
-ln -fs /mnt/data/home/projects /home/$username/projects
-ln -fs /mnt/data/home/.var /home/$username/.var
-ln -fs /mnt/nda/work /home/$username/work
-ln -fs /mnt/data/Dropbox /home/$username/Dropbox
-ln -fs /mnt/data/security/ssh /home/$username/.ssh
-ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
-ln -fs /mnt/data/tyr /data/tyr
+[ ! -e /home/$username/projects ] && ln -fs /mnt/data/home/projects /home/$username/projects
+[ ! -e /home/$username/.var ] && ln -fs /mnt/data/home/.var /home/$username/.var
+[ ! -e /home/$username/work ] && ln -fs /mnt/nda/work /home/$username/work
+[ ! -e /home/$username/Dropbox ] && ln -fs /mnt/data/Dropbox /home/$username/Dropbox
+[ ! -e /home/$username/.ssh ] && ln -fs /mnt/data/security/ssh /home/$username/.ssh
+[ ! -e /home/$username/.gnupg ] && ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
+[ ! -e /data/tyr ] && ln -fs /mnt/data/tyr /data/tyr
 mv /var/lib/sbctl /var/lib/sbctl_backup
 ln -fs /mnt/data/security/sbctl /var/lib/sbctl
-ln -fs /mnt/media/tyrm/media /mnt/data/tyrm/media
-ln -fs /mnt/media/tyrm/downloads /mnt/data/tyrm/downloads
+[ ! -e /mnt/data/tyrm/media ] && ln -fs /mnt/media/tyrm/media /mnt/data/tyrm/media
+[ ! -e /mnt/data/tyrm/downloads ] && ln -fs /mnt/media/tyrm/downloads /mnt/data/tyrm/downloads
 
 # Change default SSH port, disable Password auth and Root login.
 sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
