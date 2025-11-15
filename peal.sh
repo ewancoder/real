@@ -291,6 +291,7 @@ mess -t "Rebuild kernel in case we need to"
 mkinitcpio -P
 
 if [ $secure_boot -eq 1 ]; then
-mess -w "Secure boot is used. Please make sure bootloader and kernel are signed, then exit the bash session."
+  mess -w "Secure boot is used. Please make sure bootloader and kernel are signed, then exit the bash session."
+fi
 #bash
 # TODO: Automate this.
