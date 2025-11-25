@@ -50,7 +50,8 @@ loadpackages # Loads the packages into the variable.
 personal_scripts=(
     personal.ewancoder.sh
     #grub-bsod-theme.sh
-    dropbox-sway-install.sh
+    #dropbox-sway-install.sh
+    mega.sh
     #asus-scar-g17-firmware.sh
     security.sh
 )
