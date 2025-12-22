@@ -40,6 +40,7 @@ install=(
     gpu-nvidia-docker   # GPU drivers support.
     core-system         # Core Arch system.
     security
+    fido
     sway                # Core Sway UI environment.
     ewancoder           # Personal packages shared across devices.
     #ewancoder-laptop   # Additional tools for laptop.
