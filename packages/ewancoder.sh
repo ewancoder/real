@@ -37,7 +37,7 @@ packages+=(
     # === Coding & Office ===
     code # VS Code.
     docker docker-compose docker-buildx # For homelab, buildx is needed for Rider debugging.
-    dotnet-sdk-8.0 dotnet-sdk aspnet-runtime-8.0 aspnet-runtime # .NET development
+    dotnet-sdk-8.0 dotnet-sdk aspnet-runtime-8.0 aspnet-runtime aspnet-targeting-pack # .NET development
     firefox # I'm using it in kiosk mode for NitroType typing.
     git # For development.
     libreoffice-fresh # Office packages.
