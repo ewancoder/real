@@ -23,6 +23,10 @@ sleep 5
 # Enable UFW
 if which ifw > /dev/null; then ufw enable; fi
 
+# Allow port for SMB.
+# TODO: This belongs in the personal script.
+sudo ufw allow 139,445/tcp || true
+
 # Install after-reboot packages.
 if [ ${#firstboot_packages[@]} -gt 0 ]; then
     echo "Installing packages"
