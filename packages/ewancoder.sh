@@ -52,6 +52,7 @@ packages+=(
     mpv                 # Video player.
     ncspot              # Console Spotify client.
     pavucontrol         # GUI volume control.
+    smb                 # Samba share for TV screensaver.
     steam               # Steam. Might rely on GPU drivers being installed first. Need to test.
     telegram-desktop    # Telegram messenger.
     # === Unused anymore ===
@@ -64,6 +65,7 @@ services+=(
     docker  # All my projects & homelab.
     cronie  # CRON jobs (regular backups).
     sshd    # SSH server.
+    smb     # Samba share for TV screensaver.
 )
 
 flatpak+=(
