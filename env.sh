@@ -10,6 +10,8 @@ subVersion="3.1: Universalized and refactored"
 # If installing from another host system - should have 2Gb available space.
 install_folder=/tmp/eal
 
+windows_efi_volume=""   # Specify if it's different from your linux EFI partition, for GRUB config generation.
+
 # Install from within already running OS. Using hostinstall=1 you can
 # install Arch linux from any other distribution (like Debian), and even
 # (possibly) from BSD, MacOS, Windows, <any other> operating systems.
