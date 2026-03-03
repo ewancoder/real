@@ -27,6 +27,9 @@ swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
 swap_partition=""       # /dev/sdb2 if you want your swap on /dev/sdb2.
 swap_file=""            # /swapfile, if you want your swap in /swapfile file.
 
+# !!! change this if you use encrypted fs with UKI
+uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
+
 # Other settings (usually don't change).
 timezone=Asia/Tbilisi
 username=ewancoder
@@ -67,6 +70,5 @@ install_systemdboot=1
 encrypted_root=1
 secure_boot=1
 uki=1
-uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 install_folder=/eal-temp # /tmp/eal means it's in RAM.
 install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.

@@ -16,21 +16,21 @@ tyrUser=$username
 mkdir -p /data
 mkdir -p /mnt/data/tyr
 chown $tyrUser:$tyrUser /mnt/data/tyr
-ln -fs /mnt/data/tyr /data
+[ ! -e /data/tyr ] && ln -fs /mnt/data/tyr /data/tyr
 
 # Local ssh/gnupg for reinstalling the OS.
 mkdir -p /mnt/data/security/{ssh,gnupg,sbctl}
 chown $username:$username /mnt/data/security/{ssh,gnupg}
-ln -fs /mnt/data/security/ssh /home/$username/.ssh
-ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
+[ ! -e /home/$username/.ssh ] && ln -fs /mnt/data/security/ssh /home/$username/.ssh
+[ ! -e /home/$username/.gnupg ] && ln -fs /mnt/data/security/gnupg /home/$username/.ssh
 
 # Media Server
 mkdir -p /mnt/data/tyrm/configs
 chown $tyrUser:$tyrUser /mnt/data/tyrm/configs
-ln -fs /mnt/media /mnt/data/tyrm/data
+[ ! -e /mnt/data/tyrm/data ] && ln -fs /mnt/media /mnt/data/tyrm/data
 
 mv /var/lib/sbctl /var/lib/sbctl_backup || true
-ln -fs /mnt/data/security/sbctl /var/lib/sbctl
+[ ! -e /var/lib/sbctl ] && ln -fs /mnt/data/security/sbctl /var/lib/sbctl
 
 # Change default SSH port, disable Password auth and Root login.
 sed -i "s/^#\?Port .*/Port ${ssh_port}/" /etc/ssh/sshd_config
@@ -42,7 +42,7 @@ usermod -aG docker $username
 usermod -aG docker $tyrUser
 
 # Crontab to update backdrops for TV screensaver on Samba share.
-echo "0 */2 * * * /home/$username/.local/bin/update-backdrops.sh" | crontab -u ewancoder -
+echo "0 */2 * * * /home/$username/.local/bin/update-backdrops.sh" | crontab -u $username -
 
 # DEV env pet projects.
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.

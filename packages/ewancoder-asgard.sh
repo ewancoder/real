@@ -14,9 +14,9 @@ packages+=(
     sbctl           # For signing EFIs for SecureBoot.
     tmux            # Terminal multiplexer.
     wireguard-tools # For connecting home PC to DO docker Swarm.
-    docker docker-compose # For homelab.
-    git # For development.
-    smb                 # Samba share for TV screensaver.
+    docker docker-compose   # For homelab.
+    git                     # For development.
+    samba                   # Samba share for TV screensaver.
 )
 
 services+=(

@@ -17,6 +17,7 @@ if [ $hostinstall -eq 1 ]; then
     mess "Initializing pacman keyring, because we are installing from another host system."
     pacman-key --init
     pacman-key --populate archlinux
+    pacman -Sy archlinux-keyring
 fi
 
 mess -t "Install system"
