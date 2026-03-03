@@ -21,7 +21,7 @@ iwctl --passphrase "$wifi_password" station wlan0 connect "$wifi_ssid"
 sleep 5
 
 # Enable UFW
-if which ifw > /dev/null; then ufw enable; fi
+if which ufw > /dev/null; then ufw enable; fi
 
 # Allow port for SMB.
 # TODO: This belongs in the personal script.
