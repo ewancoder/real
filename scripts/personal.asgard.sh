@@ -59,6 +59,7 @@ if [[ $dotfiles_repo ]]; then
     git remote add origin git@github:$dotfiles_repo.git
     rm -R dotfiles
     echo "*" > .gitignore
+    mv .git .dotfiles
 
     # Make sure everything is owned by the user.
     chown -R $username:$username .
