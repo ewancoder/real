@@ -72,3 +72,4 @@ secure_boot=1
 uki=1
 install_folder=/eal-temp # /tmp/eal means it's in RAM.
 install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.
+autologin=1 # Set to 0 to disable autologin (recommended for servers without a graphical session).

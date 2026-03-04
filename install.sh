@@ -163,6 +163,7 @@ sed -i "s/wifi_ssid=''/wifi_ssid='$wifi_ssid'/g" firstboot.sh
 sed -i "s/wifi_password=''/wifi_password='$wifi_password'/g" firstboot.sh
 sed -i "s/username=''/username='$username'/g" firstboot.sh
 sed -i "s/install_flatpak=1/install_flatpak=$install_flatpak/g" firstboot.sh
+sed -i "s/autologin=1/autologin=$autologin/g" firstboot.sh
 cp firstboot.sh $install_folder/firstboot.sh
 chmod +x $install_folder/firstboot.sh
 

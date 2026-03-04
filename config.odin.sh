@@ -54,3 +54,4 @@ uki=1
 uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 install_folder=/eal-temp # /tmp/eal means it's in RAM.
 install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.
+autologin=1
