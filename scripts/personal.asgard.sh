@@ -34,7 +34,10 @@ chown $username:$username /mnt/data/security/{ssh,gnupg}
 
 # Media Server
 mkdir -p /mnt/data/tyrm/configs
+chown $tyrUser:$tyrUser /mnt/data/tyrm
 chown $tyrUser:$tyrUser /mnt/data/tyrm/configs
+mkdir -p /mnt/data/tyrm/screensaver
+chown $tyrUser:$tyrUser /mnt/data/tyrm/screensaver
 [ ! -e /mnt/data/tyrm/data ] && ln -fs /mnt/media /mnt/data/tyrm/data
 
 mv /var/lib/sbctl /var/lib/sbctl_backup || true
@@ -50,7 +53,7 @@ usermod -aG docker $username
 usermod -aG docker $tyrUser
 
 # Crontab to update backdrops for TV screensaver on Samba share.
-echo "0 */2 * * * /home/$username/.local/bin/update-backdrops.sh" | crontab -u $username -
+echo "0 */2 * * * /home/tyr/.ewancoder-dotfiles/.local/bin/backdrops.sh" | crontab -u $username -
 
 # DEV env pet projects.
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
