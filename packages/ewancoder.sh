@@ -14,6 +14,7 @@ set -euo pipefail
 
 packages+=(
     # === Console utils ===
+    jq # json parsing
     android-file-transfer   # Android phone mount: aft-mtp-mount ~/mnt
     cronie rsync    # For backups.
     encfs           # Encryption filesystem client for protecting folders.

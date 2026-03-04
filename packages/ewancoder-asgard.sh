@@ -2,6 +2,7 @@
 set -euo pipefail
 
 packages+=(
+    jq # json parsing
     cronie rsync    # For backups.
     gvim            # Text editor. GVIM package contains VIM with +clipboard support.
     htop            # Tool for pretty resources analysis.
