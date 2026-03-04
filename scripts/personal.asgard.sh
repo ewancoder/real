@@ -53,9 +53,8 @@ if [[ $dotfiles_repo ]]; then
     cd /home/$username
     git clone https://github.com/$dotfiles_repo dotfiles
     mv dotfiles/.git .git
-    git -c url."https://github.com/".insteadOf="git@github:" submodule update --init --recursive
-    git submodule update --init --recursive
     git config --global --add safe.directory /home/$username
+    git -c url."https://github.com/".insteadOf="git@github:" submodule update --init --recursive
     git reset --hard
     git remote rm origin
     git remote add origin git@github:$dotfiles_repo.git
