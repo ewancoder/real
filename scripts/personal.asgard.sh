@@ -14,8 +14,16 @@ tyrUser=$username
 
 # Pet Projects.
 mkdir -p /data
-mkdir -p /mnt/data/tyr
+mkdir -p /mnt/data/tyr/dev/infra/cache
 chown $tyrUser:$tyrUser /mnt/data/tyr
+chown $tyrUser:$tyrUser /mnt/data/tyr/dev
+chown $tyrUser:$tyrUser /mnt/data/tyr/dev/infra
+chown $tyrUser:$tyrUser /mnt/data/tyr/dev/cache
+mkdir -p /mnt/data/tyr/infra/{pgadmin,redisinsight,seq}
+chown $tyrUser:$tyrUser /mnt/data/tyr/infra
+chown $tyrUser:$tyrUser /mnt/data/tyr/infra/redisinsight
+chown $tyrUser:$tyrUser /mnt/data/tyr/infra/seq
+chown 5050:5050 /mnt/data/tyr/infra/pgadmin
 [ ! -e /data/tyr ] && ln -fs /mnt/data/tyr /data/tyr
 
 # Local ssh/gnupg for reinstalling the OS.
