@@ -54,13 +54,13 @@ if [[ $dotfiles_repo ]]; then
     git clone https://github.com/$dotfiles_repo dotfiles
     mv dotfiles/.git .git
     git config --global --add safe.directory /home/$username
-    git -c url."https://github.com/".insteadOf="git@github:" submodule update --init --recursive
     git reset --hard
     git remote rm origin
     git remote add origin git@github:$dotfiles_repo.git
     rm -R dotfiles
     echo "*" > .gitignore
     mv .git .dotfiles
+    git --git-dir=/home/$username/.dotfiles/ --work-tree=/home/$username -c url."https://github.com/".insteadOf="git@github:" submodule update --init --recursive
 
     # Make sure everything is owned by the user.
     chown -R $username:$username .
