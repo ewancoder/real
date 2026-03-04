@@ -49,6 +49,7 @@ usermod -aG docker $username
 
 # Crontab to update backdrops for TV screensaver on Samba share.
 echo "0 */2 * * * /home/$username/.local/bin/update-backdrops.sh" | crontab -u $username -
+echo "0 */2 * * * /home/$username/.local/bin/backdrops.sh" | crontab -u $username -
 
 # DEV env pet projects.
 # TODO: properly create `tyr` user, and /data/tyr folder, possibly use a separate script for this.
