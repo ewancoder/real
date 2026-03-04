@@ -5,7 +5,7 @@ set -euo pipefail
 ssh_port=50000
 wifi_ssid="ssid"
 wifi_password="pass"
-hostname=archpc
+hostname=asgard
 root_password="pass"    # Leave empty to specify during install.
 user_password="pass"    # Leave empty to specify during install.
 swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
@@ -18,7 +18,7 @@ uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 
 # Other settings (usually don't change).
 timezone=Asia/Tbilisi
-username=ewancoder
+username=tyr
 shell=/bin/bash
 keymap=dvorak
 install=(

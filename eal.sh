@@ -12,13 +12,12 @@ fi
 # Needed to get latest package list from the mirror.
 mess -t "Update pacman packages list"
 pacman -Syy
-if [ $hostinstall -eq 1 ]; then
-    # We need to manually populate Arch keyring if installing from another system, and not from Live CD.
-    mess "Initializing pacman keyring, because we are installing from another host system."
-    pacman-key --init
-    pacman-key --populate archlinux
-    pacman -Sy archlinux-keyring
-fi
+
+# Update keyring always.
+pacman-key --init
+pacman-key --populate archlinux
+pacman -Sy --noconfirm archlinux-keyring
+
 
 mess -t "Install system"
 if [ ! -d /run/shm ]; then
