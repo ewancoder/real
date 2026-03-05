@@ -18,6 +18,7 @@ packages+=(
     docker docker-compose   # For homelab.
     git                     # For development.
     samba                   # Samba share for TV screensaver.
+    adguardhome
 )
 
 services+=(

@@ -79,3 +79,14 @@ if [[ $dotfiles_repo ]]; then
     # Enable backups.
     echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
+
+# Set up for adguard.
+mkdir -p /etc/systemd/resolved.conf.d
+tee /etc/systemd/resolved.conf.d/adguardhome.conf << 'EOF'
+[Resolve]
+DNS=127.0.0.1
+DNSStubListener=no
+EOF
+mv /etc/resolv.conf /etc/resolv.conf.backup
+ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+systemctl reload-or-restart systemd-resolved
