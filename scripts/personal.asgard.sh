@@ -90,3 +90,6 @@ EOF
 mv /etc/resolv.conf /etc/resolv.conf.backup
 ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 systemctl reload-or-restart systemd-resolved
+
+# We have custom rules for systemd-networkd for ethernet/wifi specifics.
+sed -i "s/EnableNetworkConfiguration=true/EnableNetworkConfiguration=false/g" /etc/iwd/main.conf
