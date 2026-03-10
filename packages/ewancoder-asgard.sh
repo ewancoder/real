@@ -19,6 +19,9 @@ packages+=(
     git                     # For development.
     samba                   # Samba share for TV screensaver.
     adguardhome
+    # x-server for XPlane
+    xorg-server xorg-xinit xorg-xrandr
+    i3-wm rxvt-unicode aspnet-runtime aria2 fuse3
 )
 
 services+=(
