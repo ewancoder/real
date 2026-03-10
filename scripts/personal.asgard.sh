@@ -93,3 +93,6 @@ systemctl reload-or-restart systemd-resolved
 
 # We have custom rules for systemd-networkd for ethernet/wifi specifics.
 sed -i "s/EnableNetworkConfiguration=true/EnableNetworkConfiguration=false/g" /etc/iwd/main.conf
+
+# Copy over /etc files.
+rsync -av /home/$username/.etc/ /etc/
