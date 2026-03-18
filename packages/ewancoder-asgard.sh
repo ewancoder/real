@@ -22,6 +22,7 @@ packages+=(
     # x-server for XPlane
     xorg-server xorg-xinit xorg-xrandr
     i3-wm rxvt-unicode aspnet-runtime aria2 fuse3
+    lvm2 # For lvm.
 )
 
 services+=(
