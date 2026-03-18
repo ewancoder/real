@@ -30,4 +30,5 @@ services+=(
     cronie  # CRON jobs (regular backups).
     sshd    # SSH server.
     smb     # Samba share for TV screensaver.
+    fstrim.timer # Move to common core.
 )
