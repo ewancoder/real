@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This is my (ewancoder) custom script that runs at the end of system installation.
-# TODO: do not create symlinks within symlinks (like Dropbox/Dropbox, or projects/projects)
-
 dotfiles_repo="ewancoder/dotfiles-asgard"
 
 # Fix failing rutracker dns.
@@ -18,7 +15,7 @@ mkdir -p /mnt/data/tyr/dev/infra/cache
 chown $tyrUser:$tyrUser /mnt/data/tyr
 chown $tyrUser:$tyrUser /mnt/data/tyr/dev
 chown $tyrUser:$tyrUser /mnt/data/tyr/dev/infra
-chown $tyrUser:$tyrUser /mnt/data/tyr/dev/cache
+chown $tyrUser:$tyrUser /mnt/data/tyr/dev/infra/cache
 mkdir -p /mnt/data/tyr/infra/{pgadmin,redisinsight,seq}
 chown $tyrUser:$tyrUser /mnt/data/tyr/infra
 chown $tyrUser:$tyrUser /mnt/data/tyr/infra/redisinsight
@@ -27,6 +24,7 @@ chown 5050:5050 /mnt/data/tyr/infra/pgadmin
 [ ! -e /data/tyr ] && ln -fs /mnt/data/tyr /data/tyr
 
 mkdir -p /mnt/data/lab/{backdrops,cache,configs}
+# TODO: the following 2 statements (cold/hot) fail for some reason.
 [ ! -e /mnt/data/lab/cold ] && ln -fs /mnt/lab-cold /mnt/data/lab/cold
 [ ! -e /mnt/data/lab/hot ] && ln -fs /mnt/lab-hot /mnt/data/lab/hot
 [ ! -e /data/lab ] && ln -fs /mnt/data/lab /data/lab
@@ -85,19 +83,18 @@ if [[ $dotfiles_repo ]]; then
     echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
 
-# Set up for adguard.
-mkdir -p /etc/systemd/resolved.conf.d
-tee /etc/systemd/resolved.conf.d/adguardhome.conf << 'EOF'
-[Resolve]
-DNS=127.0.0.1
-DNSStubListener=no
-EOF
-mv /etc/resolv.conf /etc/resolv.conf.backup
-ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
-systemctl reload-or-restart systemd-resolved
-
 # We have custom rules for systemd-networkd for ethernet/wifi specifics.
 sed -i "s/EnableNetworkConfiguration=true/EnableNetworkConfiguration=false/g" /etc/iwd/main.conf
 
 # Copy over /etc files.
 rsync -av /home/$username/.etc/ /etc/
+
+# Allow SSH connection.
+ufw allow $ssh_port
+
+# Consider doing this in firstboot script:
+# Might be needed for AdGuard to work on host system.
+#ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+#systemctl reload-or-restart systemd-resolved
+
+# TODO: Might need to re-enroll TPM for disks.
