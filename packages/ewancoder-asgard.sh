@@ -23,6 +23,7 @@ packages+=(
     xorg-server xorg-xinit xorg-xrandr
     i3-wm rxvt-unicode aspnet-runtime aria2 fuse3
     lvm2 # For lvm.
+    webkit2gtk webkit2gtk-4.1 # For XPlane installer.
 )
 
 services+=(
