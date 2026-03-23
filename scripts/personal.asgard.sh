@@ -26,6 +26,11 @@ chown $tyrUser:$tyrUser /mnt/data/tyr/infra/seq
 chown 5050:5050 /mnt/data/tyr/infra/pgadmin
 [ ! -e /data/tyr ] && ln -fs /mnt/data/tyr /data/tyr
 
+mkdir -p /mnt/data/lab/{backdrops,cache,configs}
+[ ! -e /mnt/data/lab/cold ] && ln -fs /mnt/lab-cold /mnt/data/lab/cold
+[ ! -e /mnt/data/lab/hot ] && ln -fs /mnt/lab-hot /mnt/data/lab/hot
+[ ! -e /data/lab ] && ln -fs /mnt/data/lab /data/lab
+
 # Local ssh/gnupg for reinstalling the OS.
 mkdir -p /mnt/data/security/{ssh,gnupg,sbctl}
 chown $username:$username /mnt/data/security/{ssh,gnupg}
