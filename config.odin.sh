@@ -2,12 +2,13 @@
 set -euo pipefail
 
 # To change before install:
+uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 crypt_password="pass"
 git_work_email="work@email.com"
 ssh_port=50000
 wifi_ssid="ssid"
 wifi_password="pass"
-hostname=archpc
+hostname=odin
 root_password="pass"    # Leave empty to specify during install.
 user_password="pass"    # Leave empty to specify during install.
 swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
@@ -51,7 +52,6 @@ install_systemdboot=1
 encrypted_root=1
 secure_boot=1
 uki=1
-uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 install_folder=/eal-temp # /tmp/eal means it's in RAM.
 install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.
 autologin=1
