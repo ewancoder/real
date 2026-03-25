@@ -72,5 +72,8 @@ if [[ $dotfiles_repo ]]; then
     echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
 
+# Copy over /etc files.
+rsync -av /home/$username/.etc/ /etc/
+
 # Install angular globally
 npm i -g @angular/cli
