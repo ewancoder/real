@@ -74,6 +74,7 @@ fi
 
 # Configure firewall.
 ufw allow 8096/tcp # Jellyfin passthrough to the server (socat).
+ufw route allow from 192.168.137.10 # To allow traffic from asgard (pushing to github, Bazarr not breaking)
 
 # Copy over /etc files.
 rsync -av /home/$username/.etc/ /etc/
