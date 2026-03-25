@@ -72,6 +72,9 @@ if [[ $dotfiles_repo ]]; then
     echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
 
+# Configure firewall.
+ufw allow 8096/tcp # Jellyfin passthrough to the server (socat).
+
 # Copy over /etc files.
 rsync -av /home/$username/.etc/ /etc/
 
