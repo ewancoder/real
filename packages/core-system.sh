@@ -17,7 +17,9 @@ packages+=(
     # - efibootmgr is needed to see EFI volumes.
     # - os-prober is needed to generate entry for Windows (if it's installed).
     # TODO: remove unnecessary packages from here when using systemd-boot.
-    grub efibootmgr os-prober
+    # I'm using systemd-boot now - commenting this out.
+    # TODO: Move grub to a separate "core" package and require it when user configures grub for install.
+    #grub efibootmgr os-prober
 
     iwd     # Network daemon to be able to connect to Wi-Fi.
     # TODO: remove sudo when using run0.

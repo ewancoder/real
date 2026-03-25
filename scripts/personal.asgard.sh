@@ -83,14 +83,24 @@ if [[ $dotfiles_repo ]]; then
     echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
 
+# Set crypt password for backup scripts.
+echo "export CRYPT_PASSWORD=$crypt_password" > /root/.secrets
+chmod 400 /root/.secrets
+
 # We have custom rules for systemd-networkd for ethernet/wifi specifics.
 sed -i "s/EnableNetworkConfiguration=true/EnableNetworkConfiguration=false/g" /etc/iwd/main.conf
 
 # Copy over /etc files.
 rsync -av /home/$username/.etc/ /etc/
 
-# Allow SSH connection.
-ufw allow $ssh_port
+# Configure firewall.
+ufw allow $ssh_port     # SSH.
+ufw allow 139,445/tcp   # Samba.
+ufw allow 2377/tcp      # Docker swarm.
+ufw allow 7946/tcp      # Docker swarm.
+ufw allow 7946/udp      # Docker swarm.
+ufw allow 4789/udp      # Docker swarm.
+ufw allow 33333         # Torrenting.
 
 # Consider doing this in firstboot script:
 # Might be needed for AdGuard to work on host system.
