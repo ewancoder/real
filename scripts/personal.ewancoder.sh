@@ -76,6 +76,18 @@ fi
 ufw allow 8096/tcp # Jellyfin passthrough to the server (socat).
 ufw route allow from 192.168.137.10 # To allow traffic from asgard (pushing to github, Bazarr not breaking)
 
+# Restore Claude config from backup (real copies, not symlinks — Claude breaks with symlinks).
+if [ -d /home/$username/projects/claude-backup ]; then
+    mkdir -p /home/$username/.config/Claude
+    rsync -av /home/$username/projects/claude-backup/config-Claude/ /home/$username/.config/Claude/
+    rsync -av /home/$username/projects/claude-backup/dot-claude/ /home/$username/.claude/
+fi
+
+# Restore T.Y.R.V.I.S. data files.
+if [ -d /home/$username/projects/claude-backup/tyrvis ]; then
+    rsync -av /home/$username/projects/claude-backup/tyrvis/ /home/$username/tyrvis/
+fi
+
 # Copy over /etc files.
 rsync -av /home/$username/.etc/ /etc/
 
