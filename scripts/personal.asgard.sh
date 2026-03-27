@@ -33,7 +33,7 @@ mkdir -p /mnt/data/lab/{backdrops,cache,configs}
 mkdir -p /mnt/data/security/{ssh,gnupg,sbctl}
 chown $username:$username /mnt/data/security/{ssh,gnupg}
 [ ! -e /home/$username/.ssh ] && ln -fs /mnt/data/security/ssh /home/$username/.ssh
-[ ! -e /home/$username/.gnupg ] && ln -fs /mnt/data/security/gnupg /home/$username/.ssh
+[ ! -e /home/$username/.gnupg ] && ln -fs /mnt/data/security/gnupg /home/$username/.gnupg
 
 # Media Server
 mkdir -p /mnt/data/tyrm/configs
