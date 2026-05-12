@@ -14,6 +14,7 @@ set -euo pipefail
 
 packages+=(
     # === Console utils ===
+    socat # Socat for forking 8096 for mediaserver.
     jq # json parsing
     android-file-transfer   # Android phone mount: aft-mtp-mount ~/mnt
     cronie rsync    # For backups.
