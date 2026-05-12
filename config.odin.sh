@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # To change before install:
-uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
+uki_cmdline="rd.luks.name=1837b3d2-2cc8-42a7-8991-9743e8ece11f=root root=/dev/mapper/root rw"
 crypt_password="pass"
 git_work_email="work@email.com"
 ssh_port=50000
