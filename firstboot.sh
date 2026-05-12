@@ -24,10 +24,10 @@ sleep 5
 # Enable UFW
 if which ufw > /dev/null; then ufw enable; fi
 
+pacman -Syyu
 # Install after-reboot packages.
 if [ ${#firstboot_packages[@]} -gt 0 ]; then
     echo "Installing packages"
-    pacman -Syyu
     pacman -S $firstboot_packages --noconfirm
 fi
 
