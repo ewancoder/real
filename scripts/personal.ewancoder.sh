@@ -91,5 +91,13 @@ fi
 # Copy over /etc files.
 rsync -av /home/$username/.etc/ /etc/
 
+# Enable any systemd units shipped via .etc/systemd/system.
+if [ -d /home/$username/.etc/systemd/system ]; then
+    for unit in /home/$username/.etc/systemd/system/*; do
+        [ -f "$unit" ] || continue
+        systemctl enable "$(basename "$unit")"
+    done
+fi
+
 # Install angular globally
 npm i -g @angular/cli
