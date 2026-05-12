@@ -6,7 +6,7 @@ set -euo pipefail
 
 cd /home/$username
 curl https://mega.nz/linux/repo/Arch_Extra/x86_64/megasync-x86_64.pkg.tar.zst -o megapkg
-pacman -U "$PWD/megapkg"
+pacman -U "$PWD/megapkg" --noconfirm
 rm megapkg
 
 # Add starting megasync with the session if not added yet.
