@@ -317,5 +317,9 @@ mkinitcpio -P
 
 if [ $secure_boot -eq 1 ]; then
     # TODO: Automate this.
-    mess -w "Secure boot is used. Please make sure bootloader and kernel are signed"
+    mess "Secure boot is used. Signing the bootloader and regenerating the kernel."
+    # TODO: Make sure we sing correct files or skip signing (GRUB, missing sbctl, etc)
+    sbctl sign /efi/EFI/Boot/bootx64.efi
+    sbctl sign /efi/EFI/systemd/systemd-bootx64.efi
+    mkinitcpio -P
 fi
