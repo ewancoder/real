@@ -35,6 +35,7 @@ packages+=(
     wireguard-tools # For connecting home PC to DO docker Swarm.
     wlsunset        # Control backlight color (warmer at night)
     zsh             # Alternative shell.
+    wol             # Wake-on-lan, need to wake devices like LG tv.
 
     # === Coding & Office ===
     code # VS Code.
@@ -84,4 +85,5 @@ flatpak+=(
 aur+=(
     uhk-agent-appimage  # UHK agent.
     sptlrx-bin          # Real-time lyrics for Spotify.
+    bscpylgtv           # Control (turn off/on LG tv).
 )

@@ -26,6 +26,7 @@ packages+=(
     sway        # Main WM.
     swaybg      # Background for Sway.
     swaylock    # For locking the session/screens.
+    swayidle    # For auto-locking and auto-turning-off-screen.
     fuzzel      # Application launcher.
     foot        # Terminal for Wayland.
     mako        # Notification daemon (shows notifications in Wayland).
