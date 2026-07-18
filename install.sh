@@ -31,6 +31,14 @@ if [[ ! " ${packages[*]} " =~ " fish " ]] && [[ $shell == "/bin/fish" ]]; then
     exit 0
 fi
 
+# TODO: Support unencrypted install with UKI: the whole unencrypted path is
+# untested, and peal.sh would need to generate the cmdline for it
+# (root=UUID=<root fs uuid> rw) instead of only doing LUKS detection.
+if [[ $uki -eq 1 ]] && [[ $encrypted_root -eq 0 ]]; then
+    mess -w "UKI without encrypted root is not supported yet. Exiting."
+    exit 0
+fi
+
 prepare() {
     echo "source ./env.sh" > "$2"
     echo "source ./config.sh" >> "$2"

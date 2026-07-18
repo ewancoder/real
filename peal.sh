@@ -81,8 +81,24 @@ rm -f /boot/intel-ucode.img /boot/amd-ucode.img
 if [ $uki -eq 1 ]; then
     # Set up UKI.
     mess -t "Set up UKI"
+    # UKI always implies encrypted root here: install.sh aborts early otherwise.
     sed -i 's/default_image/#default_image/g' /etc/mkinitcpio.d/linux.preset
     sed -i 's/#default_uki/default_uki/g' /etc/mkinitcpio.d/linux.preset
+    # Build the cmdline automatically: find the mapper backing /,
+    # then the LUKS device behind it, and use that device's UUID.
+    mess "Detect root LUKS device for kernel cmdline"
+    rootmapper=`findmnt -no SOURCE / `
+    rootmapperbase=`basename $rootmapper `
+    rootluksdev=`cryptsetup status $rootmapperbase 2>/dev/null | awk -F': ' '/device:/ { print $2 }' | xargs `
+    if [ -z "$rootluksdev" ]; then
+        mess -w "Could not detect the LUKS device backing / (is root really on LUKS?). Not writing cmdline." && exit 1
+    fi
+    rootluksuuid=`blkid -s UUID -o value $rootluksdev `
+    if [ -z "$rootluksuuid" ]; then
+        mess -w "Could not detect the UUID of LUKS device $rootluksdev. Not writing cmdline." && exit 1
+    fi
+    uki_cmdline="rd.luks.name=$rootluksuuid=$rootmapperbase root=/dev/mapper/$rootmapperbase rw"
+    mess "Detected cmdline: $uki_cmdline"
     echo "$uki_cmdline" > /etc/kernel/cmdline
 fi
 

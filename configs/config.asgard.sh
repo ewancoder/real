@@ -12,9 +12,6 @@ swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
 swap_partition=""       # /dev/sdb2 if you want your swap on /dev/sdb2.
 swap_file=""            # /swapfile, if you want your swap in /swapfile file.
 wlan_interface=wlan0
-# !!! change this if you use encrypted fs with UKI
-# Replace the "uuid" part with the actual UUID of the hardware disk (blkid nvmeXXX)
-uki_cmdline="rd.luks.name=uuid=root root=/dev/mapper/root rw"
 
 # Other settings (usually don't change).
 timezone=Asia/Tbilisi
@@ -34,9 +31,6 @@ install=(
 loadpackages
 
 ## TODO NOW:
-#1. Wrong generation of LUKS cmdline: needs to have the actual UUID of the drive.
-#  - yeah, it's missing root id, and so waiting for /dev/mapper/root forever
-#  !!! format should be: rd.luks.name=UUID=NAME root=dev/mapper/NAME rw
 #2. add whatever's needed to install keyring
 #3. should be samba, not smb, in packages
 #4. bootctl install:
