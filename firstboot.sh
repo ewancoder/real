@@ -22,7 +22,10 @@ iwctl --passphrase "$wifi_password" station wlan0 connect "$wifi_ssid"
 sleep 5
 
 # Enable UFW
-if which ufw > /dev/null; then ufw enable; fi
+if which ufw > /dev/null; then
+    ufw default deny
+    ufw enable
+fi
 
 pacman -Syyu --noconfirm
 # Install after-reboot packages.

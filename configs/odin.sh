@@ -40,7 +40,6 @@ personal_scripts=(
     dropbox-sway-install.sh
     mega.sh
     #asus-scar-g17-firmware.sh
-    security.sh
 )
 
 # Script control options.

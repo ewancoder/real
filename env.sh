@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 step=
+swap_file=""
+swap_partition=""
 
 title="Ewancoder Arch Linux (EAL) installation script"
 version="3.0: Rad / Rewritten / Refactored / Really-simplified / R-EAL"

@@ -5,15 +5,13 @@ set -euo pipefail
 ssh_port=50000
 wifi_ssid="ssid"
 wifi_password="pass"
-hostname=asgard
 root_password="pass"    # Leave empty to specify during install.
 user_password="pass"    # Leave empty to specify during install.
-swapsize=20             # Swap size in Gigabytes, will be allocated on RAM.
-swap_partition=""       # /dev/sdb2 if you want your swap on /dev/sdb2.
-swap_file=""            # /swapfile, if you want your swap in /swapfile file.
 wlan_interface=wlan0
 
-# Other settings (usually don't change).
+# Hardcoded settings
+hostname=asgard
+swapsize=20
 timezone=Asia/Tbilisi
 username=tyr
 shell=/bin/bash
@@ -28,35 +26,20 @@ install=(
 )
 loadpackages
 
-## TODO NOW:
-#2. add whatever's needed to install keyring
-#3. should be samba, not smb, in packages
-#4. bootctl install:
-# running in a chroot, enabling --graceful
-# couldn't find EFI system partition, skipping
-# (probably cause i didn't mount it though lol)
-# 5. first of all, /mnt/data/tyr should symlink to /data/tyr, not /data.
-# - second --- !!! those checks are for not creating symlinks like /data/tyr/tyr/tyr/tyr. fix that
-# 6. add instructions on what to mount not to forget.
-# for server it's:
-# - /mnt/media, /mnt/data, /, and /efi
-# - cronntab -u ewancoder - hardcoded user in the personal script
-
 personal_scripts=(
     personal.asgard.sh
-    security.sh
 )
 
 # Script control options.
-auto=1 # Automatically install everything. Put 0 here to manually confirm each step.
-hostinstall=0 # If 1 - install from already running system, otherwise - livecd.
-aur_install=1 # Specify 0 here to skip installing ANY aur packages.
-yay_ask=0 # Ask for confirmation when installing YAY packages.
+auto=1
+hostinstall=0
+aur_install=1   # Install AUR packages.
+yay_ask=0       # Ask for confirmation when installing YAY packages.
 install_grub=0
 install_systemdboot=1
 encrypted_root=1
 secure_boot=1
 uki=1
-install_folder=/eal-temp # /tmp/eal means it's in RAM.
+install_folder=/eal-temp # /tmp/eal means it's in RAM, however RAM is volatile.
 install_flatpak=1 # Set it to 0 to completely skip installing flatpak packages.
 autologin=0 # Disable autologin for server (no graphical session to protect it).
