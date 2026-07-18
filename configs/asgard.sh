@@ -19,14 +19,12 @@ username=tyr
 shell=/bin/bash
 keymap=dvorak
 install=(
+    core-system
     cpu-intel
+    ew-asgard
     gpu-nvidia
     gpu-nvidia-docker
-    core-system
-    fs-tools
     security
-    fido
-    ew-asgard
 )
 loadpackages
 

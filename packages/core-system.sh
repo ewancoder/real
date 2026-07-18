@@ -15,4 +15,5 @@ packages+=(
 services+=(
     bluetooth
     systemd-networkd
+    fstrim.timer # For SSD trimming, in case discard doesn't work.
 )

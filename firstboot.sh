@@ -24,7 +24,7 @@ sleep 5
 # Enable UFW
 if which ufw > /dev/null; then ufw enable; fi
 
-pacman -Syyu
+pacman -Syyu --noconfirm
 # Install after-reboot packages.
 if [ ${#firstboot_packages[@]} -gt 0 ]; then
     echo "Installing packages"
@@ -37,7 +37,7 @@ if [ "${#flatpak[@]}" -gt 0 ] && [ $install_flatpak -eq 1 ]; then
     # This will only work if flatpak itself was installed in the system.
     # (one of the packages in config should be flatpak)
     echo "Install Flatpak packages"
-    sudo pacman -S --noconfirm flatpak
+    sudo pacman -S --noconfirm --needed flatpak
     sudo flatpak install ${flatpak[@]} --noninteractive --system
 else
     echo "Skip installing Flatpak packages."

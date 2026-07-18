@@ -36,7 +36,7 @@ install=(
 loadpackages
 
 personal_scripts=(
-    personal.ewancoder.sh
+    personal.odin.sh
     dropbox-sway-install.sh
     mega.sh
     #asus-scar-g17-firmware.sh
