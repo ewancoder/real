@@ -26,11 +26,13 @@ install=(
     gpu-nvidia
     gpu-nvidia-docker
     core-system
+    fs-tools
+    audio
     security
     fido
     sway
-    ewancoder
-    #ewancoder-laptop   # Additional tools for laptop.
+    ew-odin
+    #ew-thor-tools   # ADDITIONAL tools for laptop.
 )
 loadpackages
 

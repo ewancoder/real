@@ -26,9 +26,10 @@ install=(
     gpu-nvidia
     gpu-nvidia-docker
     core-system
+    fs-tools
     security
     fido
-    ewancoder-asgard
+    ew-asgard
 )
 loadpackages
 

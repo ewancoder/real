@@ -14,7 +14,7 @@ set -euo pipefail
 
 packages+=(
     # Main low-level wayland/system libs.
-    wlroots0.19             # Wayland composer, dependency for many WMs.
+    wlroots0.20             # Wayland composer, dependency for many WMs.
     xdg-desktop-portal-gtk  # Needed for flatpak apps to talk to Wayland (like opening links from Zoom).
     xdg-desktop-portal-wlr  # Abitily to share screens with wlroots compositor, uses slurp to select a screen.
     wl-clipboard            # Wayland clipboard support
@@ -40,6 +40,7 @@ packages+=(
     # - noto-fonts - the base, the main font that's preferably being used for everything
     # - otf-font-awesome is needed for swappy (screenshotting tool)
     # - noto-fonts-emoji is needed for icons (turtle icon for downloads, Telegram icons on notifications)
+    # - noto-fonts-cjk - Japanese fonts
     # - google chrome needs ttf-liberation
-    noto-fonts ttf-liberation otf-font-awesome noto-fonts-emoji
+    noto-fonts ttf-liberation otf-font-awesome noto-fonts-emoji noto-fonts-cjk
 )

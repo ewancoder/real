@@ -182,7 +182,7 @@ else
     # Install YAY - helper to install AUR packages automatically.
     remove_go=0
     which go || remove_go=1
-    pacman -S --noconfirm go # Needed to get & compile yay.
+    pacman -S --noconfirm --needed go base-devel git # Needed to get & compile yay.
     mess "Install yay"
     git clone --branch yay --single-branch https://github.com/archlinux/aur.git /tmp/aur
     chown -R $username /tmp/aur
