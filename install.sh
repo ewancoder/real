@@ -5,6 +5,15 @@ set -euo pipefail
 
 source env.sh
 
+config_file="config.sh"
+if [ -n "${1:-}" ]; then
+    config_file="configs/$1.sh"
+fi
+if [ ! -f "$config_file" ]; then
+    echo "Config file '$config_file' not found. Exiting."
+    exit 1
+fi
+
 clear
 mess -t "$title\nVersion $version\nMinor version $subVersion"
 
@@ -19,8 +28,8 @@ if [ ! "$(id -u)" -eq 0 ]; then
     exit
 fi
 
-mess -w "Before proceeding:\n\t1) Edit 'config.sh' configuration file\n\t2) Format your partitions (including swap if needed) & mount them to /mnt as required.\n\nOnly continue after you've done this, or press Ctrl+C to cancel script execution. If you are using UKI - EFI directory should be mounted to /efi (/mnt/efi)."
-source config.sh
+mess -w "Before proceeding:\n\t1) Edit '$config_file' configuration file\n\t2) Format your partitions (including swap if needed) & mount them to /mnt as required.\n\nOnly continue after you've done this, or press Ctrl+C to cancel script execution. If you are using UKI - EFI directory should be mounted to /efi (/mnt/efi)."
+source "$config_file"
 
 if [[ ! " ${packages[*]} " =~ " zsh " ]] && [[ $shell == "/bin/zsh" ]]; then
     mess -w "You do not have 'zsh' package in your packages, but you set it as your desired shell. Please make sure you either install it, or change the shell."
@@ -135,7 +144,8 @@ mess "Make temporary 'eal' directory where all installation files will be kept"
 mkdir -p $install_folder
 
 mess "Copy env.sh, config.sh"
-cp env.sh config.sh $install_folder
+cp env.sh $install_folder
+cp "$config_file" $install_folder/config.sh
 
 mess "Copy packages & scripts folders"
 cp -r packages $install_folder/
