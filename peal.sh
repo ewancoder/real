@@ -336,3 +336,7 @@ if [ $secure_boot -eq 1 ]; then
     sbctl sign /efi/EFI/systemd/systemd-bootx64.efi
     mkinitcpio -P
 fi
+
+
+# TODO: set up backups - there are no /mnt/backup folder, neither crontab for backup script
+# We need server-specific backups, probably to hdd.
