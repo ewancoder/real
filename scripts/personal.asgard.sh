@@ -59,9 +59,6 @@ sed -i "s/^#\?PermitRootLogin .*/PermitRootLogin no/" /etc/ssh/sshd_config
 # Add users to docker group for sudo-less docker access.
 usermod -aG docker $tyrUser
 
-# Crontab to update backdrops for TV screensaver on Samba share.
-echo "0 */2 * * * /home/tyr/.ewancoder-dotfiles/.local/bin/backdrops.sh" | crontab -u $username -
-
 if [[ $dotfiles_repo ]]; then
     # Load dotfiles.
     cd /home/$username
