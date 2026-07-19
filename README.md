@@ -4,27 +4,32 @@ This script automates installing Arch Linux, handling errors in the process and 
 
 ## How to run
 
-1. Boot up from LiveCD
-2. Download the script:
+1. Boot up from LiveCD, connect to network (wifi)
+2. (optional) connect via SSH for convenience:
 
 ```
-pacman -Syy
-pacman -S --noconfirm git
+(on livecd): passwd # set up password
+ssh root@IP
+```
+
+3. Download the script:
+
+```
+pacman -Syy --noconfirm git
 git clone https://github.com/ewancoder/real
 cd real
 ```
 
-3. Edit `config.sh` file carefully, reviewing each variable.
-  - If needed - create your own packages/scripts in `packages`/`scripts` folders
-4. Run the script from root:
+4. Edit `configs/CONFIGNAME.sh` file for your machine carefully, reviewing each variable.
 
-`sudo ./install.sh`
+5. Run the script from root:
 
-At some point during the install, you will be prompted to format & mount the drivers to /mnt folder. Format and mount them accordingly.
+> Consider running it in tmux session.
 
-You will be given a new bash shell session. You can format your drives & mount them, and then type `exit` to exit the interactive shell session.
-
-The installation script will continue executing immediately.
+```
+./mount/MOUNT_SCRIPT.sh
+./install.sh CONFIGNAME
+```
 
 ### Running from already running host system (Arch/Debian/anything else)
 
