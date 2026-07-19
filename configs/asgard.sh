@@ -8,7 +8,7 @@ wifi_password="pass"
 root_password="pass"    # Leave empty to specify during install.
 user_password="pass"    # Leave empty to specify during install.
 
-# Hardcoded settings
+# Hardcoded settings.
 wlan_interface=wlan0
 hostname=asgard
 swapsize=20
@@ -35,7 +35,7 @@ personal_scripts=(
 auto=1
 hostinstall=0
 aur_install=1   # Install AUR packages.
-yay_ask=0       # Ask for confirmation when installing YAY packages.
+yay_ask=1       # Ask for confirmation when installing YAY packages.
 install_grub=0
 install_systemdboot=1
 encrypted_root=1
