@@ -20,6 +20,7 @@ install=(
     core-system
     cpu-intel
     ew-asgard
+    fs-tools # We need btrfs.fsck to remove mkinitcpio warnings.
     gpu-nvidia
     gpu-nvidia-docker
     security
