@@ -47,6 +47,7 @@ packages+=(
     npm # NodeJS & NPM.
     okular qt6-multimedia-ffmpeg # KDE PFD reader (consider changing to something vi-like), requires qt6-multimedia backend.
     xournalpp # Handwritten brainstorming journal. (TODO: alternatively try Lorien: aur lorien-bin package)
+    libappindicator # Tray icon support for Dropbox.
 
     # === Multimedia ===
     discord             # Official Discord client.
