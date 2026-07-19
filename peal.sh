@@ -191,23 +191,20 @@ echo "$username ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # TODO: this is obsolete and insecure so better remove this, I am using 'run0' now anyway.
 #echo "$username ALL=(ALL:ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers
 
+# TODO: Test whether AUR is already installed and skip re-installation.
 mess -t "Setting up AUR helpers & installing packages"
-if which yay > /dev/null; then
-    mess "Yay already installed, skipping installation"
-else
-    # Install YAY - helper to install AUR packages automatically.
-    remove_go=0
-    which go || remove_go=1
-    pacman -S --noconfirm --needed go base-devel git # Needed to get & compile yay.
-    mess "Install yay"
-    git clone --branch yay --single-branch https://github.com/archlinux/aur.git /tmp/aur
-    chown -R $username /tmp/aur
-    runuser -l $username -c 'cd /tmp/aur && makepkg'
-    pacman -U --noconfirm /tmp/aur/*.pkg.tar.zst
-    if [ $remove_go -eq 1 ]; then
-        # Delete go if installed just for building yay, and not from user packages.
-        pacman -R --noconfirm go
-    fi
+# Install YAY - helper to install AUR packages automatically.
+remove_go=0
+[ -x /usr/bin/go ] || remove_go=1
+pacman -S --noconfirm --needed go base-devel git # Needed to get & compile yay.
+mess "Install yay"
+git clone --branch yay --single-branch https://github.com/archlinux/aur.git /tmp/aur
+chown -R $username /tmp/aur
+runuser -l $username -c 'cd /tmp/aur && makepkg'
+pacman -U --noconfirm /tmp/aur/*.pkg.tar.zst
+if [ $remove_go -eq 1 ]; then
+    # Delete go if installed just for building yay, and not from user packages.
+    pacman -R --noconfirm go
 fi
 
 if [ $aur_install -eq 1 ]; then
