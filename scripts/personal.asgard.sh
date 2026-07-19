@@ -88,7 +88,8 @@ fi
 #sed -i "s/EnableNetworkConfiguration=true/EnableNetworkConfiguration=false/g" /etc/iwd/main.conf
 
 # Copy over /etc files.
-rsync -av /home/$username/.etc/ /etc/
+# Temporarily commented out: we don't have anything there anymore.
+#rsync -av /home/$username/.etc/ /etc/
 
 # Configure firewall.
 ufw allow $ssh_port     # SSH.
