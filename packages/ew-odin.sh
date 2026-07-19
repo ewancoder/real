@@ -14,14 +14,14 @@ set -euo pipefail
 
 packages+=(
     # === Console utils ===
-    socat # Socat for forking 8096 for mediaserver.
+    #socat # Socat for forking 8096 for mediaserver.
     jq # json parsing
     android-file-transfer   # Android phone mount: aft-mtp-mount ~/mnt
     cronie rsync    # For backups.
     encfs           # Encryption filesystem client for protecting folders.
+    gocryptfs       # Better than encfs.
     flatpak         # A temporary substitude for some AUR packages.
     freerdp         # RDP client to connect to my Windows laptop.
-    gocryptfs       # Better than encfs.
     gvim            # Text editor. GVIM package contains VIM with +clipboard support.
     htop            # Tool for pretty resources analysis.
     inetutils       # Needed for 'hostname' command, for backup script to discern different devices.
@@ -35,7 +35,7 @@ packages+=(
     wireguard-tools # For connecting home PC to DO docker Swarm.
     wlsunset        # Control backlight color (warmer at night)
     zsh             # Alternative shell.
-    wol             # Wake-on-lan, need to wake devices like LG tv.
+    wol             # Wake-on-lan client, need to wake devices like LG tv.
 
     # === Coding & Office ===
     code # VS Code.
@@ -61,16 +61,12 @@ packages+=(
     # github-cli - needed for auth credential manager to be able to authenticate (without ssh).
     # gnome-keyring - saves passwords for GTK apps: git, github-cli, google-chrome.
     # virtualbox virtualbox-host-modules-arch virtualbox-guest-iso - for work, don't use it now.
-
-    # === Custom fonts ===
-    noto-fonts-cjk
 )
 
 services+=(
     docker  # All my projects & homelab.
     cronie  # CRON jobs (regular backups).
-    sshd    # SSH server.
-    fstrim.timer # Move to common core.
+    #sshd    # SSH server.
 )
 
 flatpak+=(
@@ -78,11 +74,12 @@ flatpak+=(
     com.github.IsmaelMartinez.teams_for_linux
     com.slack.Slack
     net.ankiweb.Anki
-    app.zen_browser.zen
+    #app.zen_browser.zen
     #com.jetbrains.Rider
 )
 
 aur+=(
+    zen-browser-bin     # Zen browser.
     uhk-agent-appimage  # UHK agent.
     sptlrx-bin          # Real-time lyrics for Spotify.
     bscpylgtv           # Control (turn off/on LG tv).

@@ -41,7 +41,7 @@ mkdir -p /data
 
 # Restore sbctl from backup
 mv /var/lib/sbctl /var/lib/sbctl_backup || true
-[ ! -e /var/lib/sbctl ] && ln -fs /mnt/data/security/sbctl /var/lib/sbctl
+ln -fs /mnt/data/security/sbctl /var/lib/sbctl
 
 # Media Server
 #mkdir -p /mnt/data/tyrm/configs

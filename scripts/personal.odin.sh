@@ -73,8 +73,8 @@ if [[ $dotfiles_repo ]]; then
 fi
 
 # Configure firewall.
-ufw allow 8096/tcp # Jellyfin passthrough to the server (socat).
-ufw route allow from 192.168.137.10 # To allow traffic from asgard (pushing to github, Bazarr not breaking)
+#ufw allow 8096/tcp # Jellyfin passthrough to the server (socat).
+#ufw route allow from 192.168.137.10 # To allow traffic from asgard (pushing to github, Bazarr not breaking)
 
 # Restore Claude config from backup (real copies, not symlinks — Claude breaks with symlinks).
 if [ -d /home/$username/projects/claude-backup ]; then
