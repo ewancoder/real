@@ -46,7 +46,7 @@ echo ""
 echo "=== Mounting ==="
 read -p "Format /dev/mapper/${MAP_ROOT} now on another TTY before proceeding"
 mount /dev/mapper/$MAP_ROOT "$TARGET"
-mkdir -p "$TARGET/mnt/{data,backup,lab-cold,lab-hot,usb}"
+mkdir -p $TARGET/mnt/{data,lab-cold,lab-hot,usb}
 mkdir -p "$TARGET/efi"
 mount -o umask=0077,uid=0,gid=0 "$DEV_EFI" "$TARGET/efi"
 mount /dev/mapper/$MAP_DATA   "$TARGET/mnt/data"
