@@ -7,9 +7,9 @@ wifi_ssid="ssid"
 wifi_password="pass"
 root_password="pass"    # Leave empty to specify during install.
 user_password="pass"    # Leave empty to specify during install.
-wlan_interface=wlan0
 
 # Hardcoded settings
+wlan_interface=wlan0
 hostname=asgard
 swapsize=20
 timezone=Asia/Tbilisi
