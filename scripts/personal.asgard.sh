@@ -102,5 +102,14 @@ ufw allow 8096/tcp      # Jellyfin.
 ufw allow 7359/udp      # Jellyfin.
 #ufw allow 33333        # Torrenting, using VPN for now.
 
+# Wireguard setup.
+ln -s /mnt/data/security/wg/wg0.conf /etc/wireguard/wg0.conf
+systemctl enable wg-quick@wg0
+
 # TODO: Might need to re-enroll TPM for disks.
 # TODO: Join to Swarm cluster, start tyr-lab.
+# docker swarm join-token worker
+# docker node ls
+# docker node rm which-is-down
+# docker node update --label-add tyr-dev-infra=true asgard
+# docker node update --label-add tyr-dev-worker=true asgard
