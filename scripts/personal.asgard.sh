@@ -77,7 +77,8 @@ if [[ $dotfiles_repo ]]; then
     chown -R $username:$username .
 
     # Enable backups.
-    echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
+    # TODO: enable them after this script exists & ready for Asgard.
+    #echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
 fi
 
 # We have custom rules for systemd-networkd for ethernet/wifi specifics.
