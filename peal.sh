@@ -186,6 +186,7 @@ sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$(nproc)\"/" /etc/makepkg.conf
 
 # Add your user to sudoers so it can run sudo.
 mess -t "Add user to sudoers file, and tweak pacman access for yay installation"
+echo "root ALL=(ALL:ALL) ALL" >> /etc/sudoers # TODO: Temporary hack for root to be able to run sudo during install.
 echo "$username ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # Add pacman to exceptions so we can run it without password.
 # TODO: this is obsolete and insecure so better remove this, I am using 'run0' now anyway.
