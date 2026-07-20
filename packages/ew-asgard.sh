@@ -21,6 +21,7 @@ packages+=(
     xorg-server xorg-xinit xorg-xrandr
     i3-wm rxvt-unicode aspnet-runtime aria2 fuse3
     webkit2gtk-4.1 # For XPlane installer. (removed 'webkit2gtk' package because it's not in the repo anymore)
+    pacman-contrib # For checking updates without touching database (rootless)
 )
 
 services+=(
