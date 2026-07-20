@@ -29,4 +29,5 @@ services+=(
     cronie  # CRON jobs (regular backups).
     sshd    # SSH server.
     smb     # Samba share for TV screensaver.
+    tyrvis  # Tyrvis custom service synced from .etc.
 )
