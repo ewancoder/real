@@ -16,7 +16,6 @@ packages+=(
     wireguard-tools # For connecting home PC to DO docker Swarm.
     docker docker-compose   # For homelab.
     git                     # For development.
-    samba                   # Samba share for TV screensaver.
     # x-server for XPlane
     xorg-server xorg-xinit xorg-xrandr
     i3-wm rxvt-unicode aspnet-runtime aria2 fuse3
@@ -28,6 +27,5 @@ services+=(
     docker  # All my projects & homelab.
     cronie  # CRON jobs (regular backups).
     sshd    # SSH server.
-    smb     # Samba share for TV screensaver.
     tyrvis  # Tyrvis custom service synced from .etc.
 )
