@@ -36,6 +36,7 @@ personal_scripts=(
     personal.odin.sh
     dropbox-sway-install.sh
     mega.sh
+    claude-code.sh
     #asus-scar-g17-firmware.sh
 )
 

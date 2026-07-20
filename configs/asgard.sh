@@ -29,6 +29,7 @@ loadpackages
 
 personal_scripts=(
     personal.asgard.sh
+    claude-code.sh
 )
 
 # Script control options.
