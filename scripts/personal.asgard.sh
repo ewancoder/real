@@ -78,7 +78,7 @@ if [[ $dotfiles_repo ]]; then
 
     # Enable backups.
     # TODO: enable them after this script exists & ready for Asgard.
-    #echo "0 */4 * * * /home/$username/.local/bin/backup.sh" | crontab -
+    echo "0 */4 * * * /home/$username/.ewancoder-dotfiles/.local/bin/backup.sh" | crontab -
 fi
 
 # We have custom rules for systemd-networkd for ethernet/wifi specifics.
