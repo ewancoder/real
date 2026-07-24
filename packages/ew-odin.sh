@@ -36,6 +36,7 @@ packages+=(
     wlsunset        # Control backlight color (warmer at night)
     zsh             # Alternative shell.
     wol             # Wake-on-lan client, need to wake devices like LG tv.
+    fzf             # Fuzzy matcher.
 
     # === Coding & Office ===
     code # VS Code.
