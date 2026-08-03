@@ -129,7 +129,7 @@ if [ $encrypted_root -eq 1 ]; then
         fi
 
         uuid=`blkid -s UUID -o value "$backing"`
-        echo "$mapper_name UUID=$uuid none luks" >> /etc/crypttab
+        echo "$mapper_name UUID=$uuid none luks,discard" >> /etc/crypttab
     done
 fi
 
