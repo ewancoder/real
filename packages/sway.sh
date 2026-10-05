@@ -30,6 +30,7 @@ packages+=(
     fuzzel      # Application launcher.
     foot        # Terminal for Wayland.
     mako        # Notification daemon (shows notifications in Wayland).
+    waybar      # Taskbar with functional tray: default one is glitchy.
     # Screenshotting tools.
     # - slurp is used to select part of the screen and output to stdout (and to select a monitor to screen share).
     # - grim is used to screenshot the selected part (or whole monitor) and output to file (or pipe).
