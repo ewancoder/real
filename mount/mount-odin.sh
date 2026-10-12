@@ -6,6 +6,7 @@ PART_ROOT="1837b3d2-2cc8-42a7-8991-9743e8ece11f"
 PART_DATA="018f7190-3941-480f-b257-29e76ca0de71"
 PART_BACKUP="eb79c573-a13d-475a-ab5e-6a2b29bbe69b"
 PART_EFI="d72573b4-2c39-42b0-8117-9415ea39ab80"
+PART_GAMES="91352441-4f2b-45cf-aa02-cc0454c5a976"
 
 # --- Mapper names ---
 MAP_ROOT="root"
@@ -25,6 +26,7 @@ DEV_ROOT="$(resolve "$PART_ROOT")"
 DEV_DATA="$(resolve "$PART_DATA")"
 DEV_BACKUP="$(resolve "$PART_BACKUP")"
 DEV_EFI="$(resolve "$PART_EFI")"
+DEV_GAMES="$(resolve "$PART_GAMES")"
 
 printf "  %-10s %s\n" "root:" "$DEV_ROOT" "data:" "$DEV_DATA" "backup:" "$DEV_BACKUP" "efi:" "$DEV_EFI"
 
@@ -45,10 +47,11 @@ echo ""
 echo "=== Mounting ==="
 read -p "Format /dev/mapper/${MAP_ROOT} now on another TTY before proceeding"
 mount /dev/mapper/$MAP_ROOT "$TARGET"
-mkdir -p "$TARGET/mnt/data" "$TARGET/mnt/backup" "$TARGET/efi"
+mkdir -p "$TARGET/mnt/data" "$TARGET/mnt/backup" "$TARGET/efi" "$TARGET/mnt/games"
 mount /dev/mapper/$MAP_DATA   "$TARGET/mnt/data"
 mount /dev/mapper/$MAP_BACKUP "$TARGET/mnt/backup"
 mount -o umask=0077,uid=0,gid=0 "$DEV_EFI" "$TARGET/efi"
+mount "$DEV_GAMES" "$TARGET/mnt/games"
 
 echo ""
 echo "=== Result ==="
