@@ -85,4 +85,5 @@ aur+=(
     uhk-agent-appimage  # UHK agent.
     sptlrx-bin          # Real-time lyrics for Spotify.
     bscpylgtv           # Control (turn off/on LG tv).
+    hushmic             # Clear voice filter.
 )
