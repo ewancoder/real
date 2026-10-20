@@ -65,6 +65,7 @@ packages+=(
     # virtualbox virtualbox-host-modules-arch virtualbox-guest-iso - for work, don't use it now.
 
     libcurl-gnutls # Needed for airmanager.
+    chromium # For kiosk views for tablets
 )
 
 services+=(
