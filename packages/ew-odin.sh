@@ -63,6 +63,8 @@ packages+=(
     # github-cli - needed for auth credential manager to be able to authenticate (without ssh).
     # gnome-keyring - saves passwords for GTK apps: git, github-cli, google-chrome.
     # virtualbox virtualbox-host-modules-arch virtualbox-guest-iso - for work, don't use it now.
+
+    libcurl-gnutls # Needed for airmanager.
 )
 
 services+=(
