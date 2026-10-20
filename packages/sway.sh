@@ -44,4 +44,5 @@ packages+=(
     # - noto-fonts-cjk - Japanese fonts
     # - google chrome needs ttf-liberation
     noto-fonts ttf-liberation otf-font-awesome noto-fonts-emoji noto-fonts-cjk
+    mate-polkit # Polkit agent for GUI root auth.
 )

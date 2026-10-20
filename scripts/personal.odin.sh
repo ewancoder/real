@@ -99,5 +99,8 @@ if [ -d /home/$username/.etc/systemd/system ]; then
     done
 fi
 
+# Set up graphical session - for future systemd units.
+printf '%s\n' '[Unit]' 'Description=sway compositor session' 'BindsTo=graphical-session.target' 'Wants=graphical-session-pre.target' 'After=graphical-session-pre.target' | tee /etc/systemd/user/sway-session.target
+
 # Install angular globally
 npm i -g @angular/cli
