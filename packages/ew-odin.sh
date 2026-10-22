@@ -66,6 +66,7 @@ packages+=(
 
     libcurl-gnutls # Needed for airmanager.
     chromium # For kiosk views for tablets
+    obs-studio # For recording/streaming stuff.
 )
 
 services+=(
