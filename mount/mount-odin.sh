@@ -30,7 +30,7 @@ DEV_EFI="$(resolve "$PART_EFI")"
 DEV_GAMES="$(resolve "$PART_GAMES")"
 DEV_GAMES980="$(resolve "$PART_GAMES980")"
 
-printf "  %-10s %s\n" "root:" "$DEV_ROOT" "data:" "$DEV_DATA" "backup:" "$DEV_BACKUP" "efi:" "$DEV_EFI" "games980:" "$DEV_GAMES980"
+printf "  %-10s %s\n" "root:" "$DEV_ROOT" "data:" "$DEV_DATA" "backup:" "$DEV_BACKUP" "efi:" "$DEV_EFI" "games:" "$DEV_GAMES" "games980:" "$DEV_GAMES980"
 
 echo ""
 echo "=== Opening LUKS ==="
