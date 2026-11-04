@@ -99,6 +99,14 @@ if [ -d /home/$username/.etc/systemd/system ]; then
     done
 fi
 
+# HDR: patched wlroots/sway (SDR brightness control), HDR off on TTYs, dim console palette, watchdog.
+hdr_setup=/home/$username/projects/wlroots/hdr-setup/install.sh
+if [ -x "$hdr_setup" ]; then
+    "$hdr_setup" || echo "WARNING: hdr-setup failed, re-run $hdr_setup as root after boot."
+else
+    echo "WARNING: $hdr_setup not found, skipping HDR setup."
+fi
+
 # Set up graphical session - for future systemd units.
 printf '%s\n' '[Unit]' 'Description=sway compositor session' 'BindsTo=graphical-session.target' 'Wants=graphical-session-pre.target' 'After=graphical-session-pre.target' | tee /etc/systemd/user/sway-session.target
 
